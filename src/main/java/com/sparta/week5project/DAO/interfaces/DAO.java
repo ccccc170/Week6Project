@@ -2,9 +2,11 @@ package com.sparta.week5project.DAO.interfaces;
 
 import com.sparta.week5project.entities.Employee;
 
+import java.util.Optional;
+
 public interface DAO<T> {
 
-    T findById(Integer id);
+    Optional<T> findById(Integer id);
 
     int save(T e);
 

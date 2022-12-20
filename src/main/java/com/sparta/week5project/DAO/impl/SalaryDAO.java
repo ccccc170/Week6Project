@@ -5,10 +5,11 @@ import com.sparta.week5project.entities.Salary;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class SalaryDAO implements SalaryService {
     @Override
-    public Salary findById(Integer id) {
+    public Optional<Salary> findById(Integer id) {
         return null;
     }
 
