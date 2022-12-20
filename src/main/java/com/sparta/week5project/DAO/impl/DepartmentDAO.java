@@ -4,10 +4,11 @@ import com.sparta.week5project.DAO.interfaces.DepartmentService;
 import com.sparta.week5project.entities.Department;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class DepartmentDAO implements DepartmentService {
     @Override
-    public Department findById(Integer id) {
+    public Optional<Department> findById(Integer id) {
         return null;
     }
 
