@@ -18,8 +18,5 @@ public interface SalaryService<T> {
     void update(SalaryDTO e);
 
     void deleteById(SalaryId id);
-    Double averageSalaryForDepartmentAndDate(Integer deptId, LocalDate from, LocalDate to);
 
-
-    List<Double> getSalaryRangeByJobTitleAndYear(String jobTitle, Integer year);
 }

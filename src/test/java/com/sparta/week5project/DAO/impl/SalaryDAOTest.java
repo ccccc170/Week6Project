@@ -1,13 +1,12 @@
 package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DTO.SalaryDTO;
-import com.sparta.week5project.entities.DeptEmp;
-import com.sparta.week5project.entities.Employee;
-import com.sparta.week5project.entities.Salary;
-import com.sparta.week5project.entities.SalaryId;
+import com.sparta.week5project.entities.*;
 import com.sparta.week5project.mappers.EmployeeMapper;
+import com.sparta.week5project.mappers.TitleMapper;
 import com.sparta.week5project.repositories.DeptEmpRepository;
 import com.sparta.week5project.repositories.SalaryRepository;
+import com.sparta.week5project.repositories.TitleRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +16,7 @@ import org.springframework.test.annotation.Commit;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +37,11 @@ class SalaryDAOTest {
     private DeptEmpRepository deptEmpRepository;
     @Autowired
     private SalaryRepository salaryRepository;
+
+    @Autowired
+    private TitleRepository titleRepository;
+    @Autowired
+    private TitleMapper titleMapper;
 
     @Test
     void findById() {
@@ -92,17 +97,18 @@ class SalaryDAOTest {
 
         System.out.println("Getting employees from department");
         List<DeptEmp> deptEmpList = deptEmpRepository.findAllByDeptNumberSQL(departmentNumber);
-        for (DeptEmp d: deptEmpList) {
-            System.out.println(d.getEmpNo().getId());
-
-        }
+//        for (DeptEmp d: deptEmpList) {
+//            System.out.println(d.getEmpNo().getId());
+//
+//        }
         List<Integer> salaryList = new ArrayList<>();
 
         System.out.println("\nGetting employee salaries\n");
-        for (DeptEmp d: deptEmpList){
-            Integer empNo = d.getEmpNo().getId();
-//        for (int i = 0;i < 10;i++) { //Only the first 10
-//            Integer empNo = deptEmpList.get(i).getEmpNo().getId();
+
+//        for (DeptEmp d: deptEmpList){
+//            Integer empNo = d.getEmpNo().getId();
+        for (int i = 0;i < 10;i++) { //Only the first 10
+            Integer empNo = deptEmpList.get(i).getEmpNo().getId();
 
             Optional<Integer> someSalary = salaryRepository.findSalaryByEmpNoAndDateSQL(empNo,givenDate);
             if (someSalary.isPresent()){
@@ -122,11 +128,35 @@ class SalaryDAOTest {
         double average = total/salaryList.size();
 
         System.out.println(average);
-
-
     }
 
+
+    //TODO
+    //Add null checks
     @Test
+    @DisplayName("Given a job title and a year, display the range of salary values")
     void getSalaryRangeByJobTitleAndYear() {
+        String givenTitle = "Engineer";
+        int givenYear = 1989;
+        LocalDate givenYearStart = LocalDate.of(givenYear,01,01);//To
+        LocalDate givenYearEnd = LocalDate.of(givenYear+1,01,01);//From
+
+        List<Integer> empNoList = titleRepository.findAllByTitle(givenTitle,givenYearStart); //Works
+//        System.out.println(empNoList);
+        List<Integer> salaryList = new ArrayList<>();
+
+        for (Integer empNo: empNoList){
+            List<Integer> someSalary = salaryRepository.findSalaryByEmpNoAndDateRange(empNo,givenYearStart,givenYearEnd);
+            for (Integer salary : someSalary){
+                salaryList.add(salary);
+            }
+        }
+        Collections.sort(salaryList);
+//        System.out.println(salaryList);
+
+        int range = salaryList.get(salaryList.size()-1) - salaryList.get(0);
+
+        System.out.println(salaryList.get(salaryList.size()-1) + " - " + salaryList.get(0) + " = " + range);
+
     }
 }
