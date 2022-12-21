@@ -4,7 +4,9 @@ package com.sparta.week5project.mappers.impl;
 import com.sparta.week5project.DTO.DeptEmpDTO;
 import com.sparta.week5project.entities.DeptEmp;
 import com.sparta.week5project.mappers.DeptEmpMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DeptEmpMapperImpl implements DeptEmpMapper {
     @Override
     public DeptEmpDTO deptEmpToDTO(DeptEmp deptEmp) {

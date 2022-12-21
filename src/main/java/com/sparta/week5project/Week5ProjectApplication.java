@@ -16,9 +16,6 @@ public class Week5ProjectApplication {
 
         SpringApplication.run(Week5ProjectApplication.class, args);
 
-//        EmployeeDAO employeeDAO = new EmployeeDAO();
-//        employeeDAO.deleteById(10001);
-//        System.out.println(employeeDAO.findById(10002).get());
     }
 
 }
