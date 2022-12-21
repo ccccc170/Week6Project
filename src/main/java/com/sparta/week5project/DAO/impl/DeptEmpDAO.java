@@ -1,7 +1,10 @@
 package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DAO.interfaces.DAO;
+
+
 import com.sparta.week5project.DAO.interfaces.DeptEmpService;
+
 import com.sparta.week5project.DTO.DeptEmpDTO;
 import com.sparta.week5project.entities.DeptEmp;
 import com.sparta.week5project.entities.DeptEmpId;
@@ -29,6 +32,7 @@ public class DeptEmpDAO implements DeptEmpService {
     private DeptEmpMapper deptEmpMapper;
 
 
+public class DeptEmpDAO implements DAO<DeptEmpDTO> {
     @Override
     public Optional findById(DeptEmpId id) {
         return Optional.of(deptEmpMapper.deptEmpToDTO(deptEmpRepository.findById(id).get()));
