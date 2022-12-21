@@ -3,9 +3,11 @@ package com.sparta.week5project.mappers.impl;
 import com.sparta.week5project.DTO.EmployeeDTO;
 import com.sparta.week5project.entities.Employee;
 import com.sparta.week5project.mappers.EmployeeMapper;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Component;
 
 @Component
+@EnableAutoConfiguration
 public class EmployeeMapperImpl implements EmployeeMapper {
 
     @Override

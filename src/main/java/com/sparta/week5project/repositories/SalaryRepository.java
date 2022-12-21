@@ -7,11 +7,12 @@ import com.sparta.week5project.entities.SalaryId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public interface SalaryRepository extends JpaRepository<Salary, SalaryId> {
 
     @Query(value = "SELECT salary FROM salaries WHERE emp_no = :empNo AND from_date < :givenDate AND to_date > :givenDate",nativeQuery = true)

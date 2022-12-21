@@ -31,8 +31,6 @@ public class DeptEmpDAO implements DeptEmpService {
     @Autowired
     private DeptEmpMapper deptEmpMapper;
 
-
-public class DeptEmpDAO implements DAO<DeptEmpDTO> {
     @Override
     public Optional findById(DeptEmpId id) {
         return Optional.of(deptEmpMapper.deptEmpToDTO(deptEmpRepository.findById(id).get()));

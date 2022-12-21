@@ -3,7 +3,6 @@ package com.sparta.week5project.DAO.impl;
 import com.sparta.week5project.DTO.SalaryDTO;
 import com.sparta.week5project.entities.*;
 import com.sparta.week5project.mappers.EmployeeMapper;
-import com.sparta.week5project.mappers.TitleMapper;
 import com.sparta.week5project.repositories.DeptEmpRepository;
 import com.sparta.week5project.repositories.SalaryRepository;
 import com.sparta.week5project.repositories.TitleRepository;
@@ -24,21 +23,16 @@ class SalaryDAOTest {
 
     @Autowired
     private SalaryDAO salaryDAO;
-
     @Autowired
     private EmployeeDAO employeeDAO;
-
     @Autowired
     private EmployeeMapper employeeMapper;
     @Autowired
     private DeptEmpRepository deptEmpRepository;
     @Autowired
     private SalaryRepository salaryRepository;
-
     @Autowired
     private TitleRepository titleRepository;
-    @Autowired
-    private TitleMapper titleMapper;
 
     @Test
     void findById() {
