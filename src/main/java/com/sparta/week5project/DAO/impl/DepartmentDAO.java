@@ -13,8 +13,8 @@ public class DepartmentDAO implements DepartmentService {
     }
 
     @Override
-    public int save(Department e) {
-        return 0;
+    public Department save(Department e) {
+        return null;
     }
 
     @Override

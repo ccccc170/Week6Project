@@ -12,8 +12,8 @@ public class DepartmentManagerDAO implements DAO<DeptManager> {
     }
 
     @Override
-    public int save(DeptManager e) {
-        return 0;
+    public DeptManager save(DeptManager e) {
+        return null;
     }
 
     @Override
