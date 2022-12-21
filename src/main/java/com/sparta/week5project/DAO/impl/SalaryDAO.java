@@ -44,14 +44,4 @@ public class SalaryDAO implements SalaryService {
         salaryRepository.deleteById(id);
     }
 
-
-    @Override
-    public Double averageSalaryForDepartmentAndDate(Integer deptId, LocalDate from, LocalDate to) {
-        return null;
-    }
-
-    @Override
-    public List<Double> getSalaryRangeByJobTitleAndYear(String jobTitle, Integer year) {
-        return null;
-    }
 }
