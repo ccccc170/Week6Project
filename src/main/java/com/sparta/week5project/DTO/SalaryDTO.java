@@ -26,6 +26,16 @@ public class SalaryDTO {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "SalaryDTO{" +
+                "id=" + id +
+                ", empNo=" + empNo +
+                ", salary=" + salary +
+                ", toDate=" + toDate +
+                '}';
+    }
+
     public void setId(SalaryId id) {
         this.id = id;
     }
