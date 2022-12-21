@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SalaryService<T> {
-
     Optional<T> findById(SalaryId id);
 
     SalaryDTO save(SalaryDTO e);
@@ -17,7 +16,6 @@ public interface SalaryService<T> {
     void update(SalaryDTO e);
 
     void deleteById(SalaryId id);
-
     Double averageSalaryForDepartmentAndDate(Integer deptId, LocalDate from, LocalDate to);
 
 
