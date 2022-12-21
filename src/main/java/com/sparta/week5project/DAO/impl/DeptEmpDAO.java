@@ -12,8 +12,8 @@ public class DeptEmpDAO implements DAO<DeptEmp> {
     }
 
     @Override
-    public int save(DeptEmp e) {
-        return 0;
+    public DeptEmp save(DeptEmp e) {
+        return null;
     }
 
     @Override

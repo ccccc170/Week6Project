@@ -12,8 +12,8 @@ public class TitleDAO implements DAO<Title> {
     }
 
     @Override
-    public int save(Title e) {
-        return 0;
+    public Title save(Title e) {
+        return null;
     }
 
     @Override

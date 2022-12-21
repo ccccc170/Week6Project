@@ -8,7 +8,7 @@ public interface DAO<T> {
 
     Optional<T> findById(Integer id);
 
-    int save(T e);
+    T save(T e);
 
     void update(T e);
 

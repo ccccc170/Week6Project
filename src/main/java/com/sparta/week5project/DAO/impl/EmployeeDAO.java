@@ -1,6 +1,5 @@
 package com.sparta.week5project.DAO.impl;
 
-import com.sparta.week5project.DAO.interfaces.DAO;
 import com.sparta.week5project.DAO.interfaces.EmployeeService;
 import com.sparta.week5project.DTO.EmployeeDTO;
 import com.sparta.week5project.entities.Employee;
@@ -24,24 +23,36 @@ public class EmployeeDAO implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    public EmployeeDAO(EmployeeMapperImpl employeeMapper, EmployeeRepository employeeRepository) {
+        this.employeeMapper = employeeMapper;
+        this.employeeRepository = employeeRepository;
+    }
+
+    public EmployeeDAO() {
+    }
+
     @Override
     public Optional<EmployeeDTO> findById(Integer id) {
         return Optional.of(employeeMapper.employeeToDto(employeeRepository.findById(id).get()));
     }
 
     @Override
-    public int save(EmployeeDTO e) {
-        return 0;
+    public EmployeeDTO save(EmployeeDTO e) {
+        return employeeMapper.employeeToDto(employeeRepository.save(employeeMapper.dtoToEmployee(e)));
     }
+
 
     @Override
     public void update(EmployeeDTO e) {
+        e.setFirstName("INDIANA");
+        e.setFirstName("JONES");
+        employeeRepository.save(employeeMapper.dtoToEmployee(e));
 
     }
 
     @Override
     public void deleteById(Integer id) {
-
+        employeeRepository.deleteById(id);
     }
 
     @Override
@@ -63,5 +74,7 @@ public class EmployeeDAO implements EmployeeService {
     public Map<String, Double> getDifferenceInPay() {
         return null;
     }
+
+
 }
 

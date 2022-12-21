@@ -8,6 +8,17 @@ import java.time.LocalDate;
 
 public class EmployeeDTO {
 
+    public EmployeeDTO(Integer id, LocalDate birthDate, String firstName, String lastName, String gender, LocalDate hireDate) {
+        this.id = id;
+        this.birthDate = birthDate;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.hireDate = hireDate;
+    }
+
+    public EmployeeDTO() {
+    }
 
     private Integer id;
 
@@ -71,5 +82,17 @@ public class EmployeeDTO {
 
     public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "id=" + id +
+                ", birthDate=" + birthDate +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", hireDate=" + hireDate +
+                '}';
     }
 }

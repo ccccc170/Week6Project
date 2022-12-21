@@ -14,8 +14,8 @@ public class SalaryDAO implements SalaryService {
     }
 
     @Override
-    public int save(Salary e) {
-        return 0;
+    public Salary save(Salary e) {
+        return null;
     }
 
     @Override
