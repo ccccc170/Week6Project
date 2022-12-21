@@ -13,6 +13,6 @@ import java.util.Optional;
 
 public interface SalaryRepository extends JpaRepository<Salary, SalaryId> {
 
-    @Query(value = "SELECT * FROM salaries WHERE emp_no = :empNo AND from_date < :givenDate AND to_date > :givenDate",nativeQuery = true)
-    Optional<Salary> findByEmpNoAndDateSQL(Integer empNo, LocalDate givenDate);
+    @Query(value = "SELECT salary FROM salaries WHERE emp_no = :empNo AND from_date < :givenDate AND to_date > :givenDate",nativeQuery = true)
+    Optional<Integer> findSalaryByEmpNoAndDateSQL(Integer empNo, LocalDate givenDate);
 }

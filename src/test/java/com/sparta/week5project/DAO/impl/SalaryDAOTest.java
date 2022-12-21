@@ -104,9 +104,9 @@ class SalaryDAOTest {
 //        for (int i = 0;i < 10;i++) { //Only the first 10
 //            Integer empNo = deptEmpList.get(i).getEmpNo().getId();
 
-            Optional<Salary> someSalary = salaryRepository.findByEmpNoAndDateSQL(empNo,givenDate);
+            Optional<Integer> someSalary = salaryRepository.findSalaryByEmpNoAndDateSQL(empNo,givenDate);
             if (someSalary.isPresent()){
-                salaryList.add(someSalary.get().getSalary());
+                salaryList.add(someSalary.get());
             }
 
         }
