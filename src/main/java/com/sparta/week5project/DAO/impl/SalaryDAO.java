@@ -1,6 +1,9 @@
 package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DAO.interfaces.SalaryService;
+
+import com.sparta.week5project.DTO.DeptEmpDTO;
+import com.sparta.week5project.entities.Salary;
 import com.sparta.week5project.DTO.SalaryDTO;
 import com.sparta.week5project.entities.SalaryId;
 import com.sparta.week5project.mappers.SalaryMapper;
@@ -27,7 +30,6 @@ public class SalaryDAO implements SalaryService {
 
     @Override
     public SalaryDTO save(SalaryDTO e) {
-
         return salaryMapper.SalaryToDTO(salaryRepository.save(salaryMapper.dtoToSalary(e)));
     }
 
@@ -40,7 +42,6 @@ public class SalaryDAO implements SalaryService {
     @Override
     public void deleteById(SalaryId id) {
         salaryRepository.deleteById(id);
-
     }
 
 }

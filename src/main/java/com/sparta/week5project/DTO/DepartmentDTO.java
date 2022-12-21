@@ -4,6 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 
 public class DepartmentDTO {
+    public DepartmentDTO(String id, String deptName) {
+        this.id = id;
+        this.deptName = deptName;
+    }
+
+    public DepartmentDTO() {
+    }
 
     private String id;
 
@@ -23,5 +30,13 @@ public class DepartmentDTO {
 
     public void setDeptName(String deptName) {
         this.deptName = deptName;
+    }
+
+    @Override
+    public String toString() {
+        return "DepartmentDTO{" +
+                "id='" + id + '\'' +
+                ", deptName='" + deptName + '\'' +
+                '}';
     }
 }

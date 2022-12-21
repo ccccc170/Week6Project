@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SalaryService<T> {
-
-
     Optional<T> findById(SalaryId id);
 
     SalaryDTO save(SalaryDTO e);

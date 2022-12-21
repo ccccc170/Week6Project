@@ -2,6 +2,7 @@ package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DAO.interfaces.DAO;
 import com.sparta.week5project.DAO.interfaces.TitleService;
+import com.sparta.week5project.DTO.DeptEmpDTO;
 import com.sparta.week5project.DTO.TitleDTO;
 import com.sparta.week5project.entities.Title;
 import com.sparta.week5project.entities.TitleId;
