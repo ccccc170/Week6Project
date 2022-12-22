@@ -73,21 +73,5 @@ public class EmployeeDAO implements EmployeeService {
                         .collect(Collectors.toList());
     }
 
-    @Override
-    public List<Employee> findEmployeeByDepartmentAndDate(Integer deptId, LocalDate from, LocalDate to) {
-        return null;
-    }
-
-    @Override
-    public boolean isThereGenderPayGap() {
-        return false;
-    }
-
-    @Override
-    public Map<String, Double> getDifferenceInPay() {
-        return null;
-    }
-
-
 }
 
