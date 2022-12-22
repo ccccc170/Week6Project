@@ -2,8 +2,6 @@ package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DAO.interfaces.SalaryService;
 
-import com.sparta.week5project.DTO.DeptEmpDTO;
-import com.sparta.week5project.entities.Salary;
 import com.sparta.week5project.DTO.SalaryDTO;
 import com.sparta.week5project.entities.SalaryId;
 import com.sparta.week5project.mappers.SalaryMapper;
@@ -12,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 @Service
 @EnableAutoConfiguration
@@ -36,12 +32,12 @@ public class SalaryDAO implements SalaryService {
 
     @Override
     public Optional<SalaryDTO> findById(SalaryId id) {
-        return Optional.of(salaryMapper.SalaryToDTO(salaryRepository.findById(id).get()));
+        return Optional.of(salaryMapper.salaryToDTO(salaryRepository.findById(id).get()));
     }
 
     @Override
     public SalaryDTO save(SalaryDTO e) {
-        return salaryMapper.SalaryToDTO(salaryRepository.save(salaryMapper.dtoToSalary(e)));
+        return salaryMapper.salaryToDTO(salaryRepository.save(salaryMapper.dtoToSalary(e)));
     }
 
     @Override

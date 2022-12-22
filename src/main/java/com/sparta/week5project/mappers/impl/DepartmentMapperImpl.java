@@ -16,7 +16,7 @@ public class DepartmentMapperImpl implements DepartmentMapper {
         departmentDTO.setId(department.getId());
         departmentDTO.setDeptName(department.getDeptName());
 
-        return  departmentDTO;
+        return departmentDTO;
     }
 
     @Override
@@ -28,6 +28,6 @@ public class DepartmentMapperImpl implements DepartmentMapper {
         department.setId(departmentDTO.getId());
         department.setDeptName(departmentDTO.getDeptName());
 
-        return  department;
+        return department;
     }
 }

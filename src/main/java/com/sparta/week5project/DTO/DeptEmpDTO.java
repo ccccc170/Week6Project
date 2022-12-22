@@ -74,4 +74,14 @@ public class DeptEmpDTO {
         this.toDate = toDate;
     }
 
+    @Override
+    public String toString() {
+        return "DeptEmpDTO{" +
+                "id=" + id +
+                ", empNo=" + empNo +
+                ", deptNo=" + deptNo +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                '}';
+    }
 }
