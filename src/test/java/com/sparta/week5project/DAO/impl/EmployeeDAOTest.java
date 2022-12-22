@@ -88,4 +88,10 @@ class EmployeeDAOTest {
         System.out.println(employeesByLatName);
         Assertions.assertTrue(!employeesByLatName.isEmpty());
     }
+
+    @Test
+    void employeeDAOTest() {
+        EmployeeDAO employeeDAO1 = new EmployeeDAO(employeeMapper, employeeRepository);
+        Assertions.assertNotNull(employeeDAO1);
+    }
 }

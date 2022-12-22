@@ -105,4 +105,10 @@ class DepartmentManagerDAOTest {
         departmentManagerDAO.deleteById(deptManagerId);
         Assertions.assertFalse(deptManagerRepository.findById(deptManagerId).isPresent());
     }
+
+    @Test
+    void deptManagerDAOTest() {
+        DepartmentManagerDAO departmentManagerDAO1 = new DepartmentManagerDAO(deptManagerRepository, deptManagerMapper);
+        Assertions.assertNotNull(departmentManagerDAO1);
+    }
 }
