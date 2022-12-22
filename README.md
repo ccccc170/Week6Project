@@ -1,2 +1,2 @@
 # Documentation
-![img.png](Salary Tests passing.png)
+![img.png](SalaryDAOTests.png)
