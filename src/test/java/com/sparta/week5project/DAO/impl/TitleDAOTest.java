@@ -102,13 +102,10 @@ class TitleDAOTest {
         titleDAO.update(titleDTO, titleId);
         Assertions.assertEquals(titleDAO.findById(titleId).get().getId().getEmpNo(), 10002);
     }
-//        Assertions.assertEquals(titleDAO.findById(titleId).get().getId().getFromDate(), LocalDate.of(1996, 8,3));
 
 
     @Test
     @Rollback
-//    @Commit
-//    @Transactional
     void deleteById() {
         TitleId titleId = new TitleId();
         titleId.setTitle("Senior Staff");
@@ -126,10 +123,6 @@ class TitleDAOTest {
             employee1.setId(10001000);
             employeeDAO.save(employeeMapper.employeeToDto(employee1));
 
-//            TitleId titleId = new TitleId();
-//            titleId.setTitle("Senior Engineer");
-//            titleId.setEmpNo(1000100);
-
             TitleDTO titleDTO = new TitleDTO();
             titleDTO.setToDate(LocalDate.of(2022,1,1));
             titleDTO.setId(titleId);
@@ -137,12 +130,7 @@ class TitleDAOTest {
             titleDAO.save(titleDTO);
         }
         titleDAO.deleteById(titleId);
-//        Optional<TitleDTO> title1 = titleDAO.findById(titleId);
         Assertions.assertTrue(titleDAO.findById(titleId).isEmpty());
-//
-//        TitleId titleId = new TitleId();
-//            titleId.setTitle("Staff");
-//            titleId.setEmpNo(10670);
 
         titleDAO.deleteById(titleId);
     }

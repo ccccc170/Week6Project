@@ -70,5 +70,9 @@ public class DeptEmpDAO implements DeptEmpService {
         }
         return summary;
     }
+    Integer FindAllEmployeesByGivenDate(String departmentNumber, LocalDate givenDate) {
+        Optional<Integer> allEmpsOptional = deptEmpRepository.findAllByDepartmentNameAndDate(departmentNumber,givenDate);
+        return allEmpsOptional.orElse(0);
+    }
 
 }
