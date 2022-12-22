@@ -2,13 +2,9 @@ package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DTO.DepartmentDTO;
 import com.sparta.week5project.entities.Department;
-import com.sparta.week5project.mappers.impl.DepartmentMapperImpl;
 import com.sparta.week5project.repositories.DepartmentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;

@@ -1,9 +1,7 @@
 package com.sparta.week5project.DAO.impl;
 
-import com.sparta.week5project.DTO.DepartmentDTO;
 import com.sparta.week5project.DTO.DeptManagerDTO;
 import com.sparta.week5project.entities.DeptManagerId;
-import com.sparta.week5project.entities.Employee;
 import com.sparta.week5project.repositories.DeptManagerRepository;
 import com.sparta.week5project.repositories.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
@@ -11,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class DepartmentManagerDAOTest {

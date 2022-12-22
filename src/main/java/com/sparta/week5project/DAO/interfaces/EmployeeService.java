@@ -10,14 +10,5 @@ import java.util.Map;
 public interface EmployeeService extends DAO<EmployeeDTO>{
     List<Employee> findEmployeeByLastName(String lastname);
 
-    List<Employee> findEmployeeByDepartmentAndDate(Integer deptId, LocalDate from, LocalDate to);
-
-    boolean isThereGenderPayGap();
-
-    Map<String, Double> getDifferenceInPay();
-
     void update(EmployeeDTO e,Integer id );
-
-
-
 }
