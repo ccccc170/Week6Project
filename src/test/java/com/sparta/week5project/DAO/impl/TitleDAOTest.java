@@ -144,4 +144,10 @@ class TitleDAOTest {
 
         titleDAO.deleteById(titleId);
     }
+
+    @Test
+    void titleDAOTest() {
+        TitleDAO titleDAO1 = new TitleDAO(titleMapper, titleRepository);
+        Assertions.assertNotNull(titleDAO1);
+    }
 }
