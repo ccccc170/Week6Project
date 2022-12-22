@@ -14,4 +14,7 @@ public interface DepartmentRepository extends JpaRepository<Department, String> 
     Optional<Department> findByIdNumber(@Param("dept_no1") String dept_no);
 
     void deleteById(String id);
+    @Query (value = "SELECT dept_name from departments WHERE dept_no = :deptNo", nativeQuery = true)
+    String findDeptNameByDeptNo(String deptNo);
+
 }

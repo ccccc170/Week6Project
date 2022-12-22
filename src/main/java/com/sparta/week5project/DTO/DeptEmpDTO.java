@@ -73,4 +73,5 @@ public class DeptEmpDTO {
     public void setToDate(LocalDate toDate) {
         this.toDate = toDate;
     }
+
 }

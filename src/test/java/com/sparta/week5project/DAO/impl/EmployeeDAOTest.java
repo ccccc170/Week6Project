@@ -27,6 +27,7 @@ class EmployeeDAOTest {
 
     @Test
     void findByIdTest() {
+        System.out.println(employeeDAO.findById(10005).get());
         System.out.println(employeeDAO.findById(10002).get());
         Optional<EmployeeDTO> employee = employeeDAO.findById(10002);
         Assertions.assertTrue(employee.isPresent());
