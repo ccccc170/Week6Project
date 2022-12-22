@@ -6,12 +6,14 @@ import com.sparta.week5project.entities.DeptManagerId;
 import com.sparta.week5project.entities.Employee;
 import com.sparta.week5project.mappers.impl.DeptManagerMapperImpl;
 import com.sparta.week5project.repositories.DepartmentRepository;
+import com.sparta.week5project.repositories.DepartmentRepository;
 import com.sparta.week5project.repositories.DeptManagerRepository;
 import com.sparta.week5project.repositories.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -67,8 +69,12 @@ class DepartmentManagerDAOTest {
     }
 
     @Test
-    void deleteBYIdTest() {
+    @Rollback
+    void deleteByIdTest() {
+        DeptManagerId deptManagerId = new DeptManagerId();
+        deptManagerId.setEmpNo(110022);
+        deptManagerId.setDeptNo("d001");
+        departmentManagerDAO.deleteById(deptManagerId);
+        Assertions.assertFalse(deptManagerRepository.findById(deptManagerId).isPresent());
     }
-
-
 }
