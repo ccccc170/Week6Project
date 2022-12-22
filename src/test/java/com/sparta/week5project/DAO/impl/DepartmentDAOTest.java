@@ -59,24 +59,16 @@ public class DepartmentDAOTest {
 
     @Test
     void testUpdate() {
-        if (departmentRepository.findByIdNumber("d014").isEmpty()) {
-            DepartmentDTO departmentDTO = new DepartmentDTO();
-            departmentDTO.setDeptName("AnotherDepartment");
-            departmentDTO.setId("d014");
-            departmentDAO.save(departmentDTO);
-
+        Optional<Department> departmentOptional = departmentRepository.findByIdNumber("d014");
+        if (departmentOptional.isPresent()) {
             DepartmentDTO departmentNew = new DepartmentDTO();
-            departmentDTO.setDeptName("NewDepartment");
-
-            Optional<DepartmentDTO> savedDepartment = departmentDAO.findByDept_No("d014");
-            if (savedDepartment.isPresent()) {
-                departmentDAO.update(departmentNew, "d014");
-            }
-            Optional<Department> result = departmentRepository.findById("d014");
-            Assertions.assertEquals(result.get().getDeptName(), "NewDepartment");
-
+            departmentNew.setDeptName("NewDepartment");
+            departmentDAO.update(departmentNew, "d014");
         }
+        Optional<Department> result = departmentRepository.findById("d014");
+        Assertions.assertEquals(result.get().getDeptName(), "NewDepartment");
     }
+
 
     @Test
     void testConstructor() {
