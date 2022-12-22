@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface DepartmentRepository extends JpaRepository<Department, String> {
     @Query(value="SELECT * FROM departments WHERE dept_no = :dept_no1", nativeQuery = true)
     Optional<Department> findByIdNumber(@Param("dept_no1") String dept_no);
+
+    void deleteById(String id);
 }
