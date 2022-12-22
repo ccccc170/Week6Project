@@ -35,7 +35,6 @@ public class SalaryDTO {
                 ", toDate=" + toDate +
                 '}';
     }
-
     public void setId(SalaryId id) {
         this.id = id;
     }
