@@ -3,6 +3,8 @@ package com.sparta.week5project.DAO.impl;
 import com.sparta.week5project.DTO.SalaryDTO;
 import com.sparta.week5project.entities.SalaryId;
 import com.sparta.week5project.mappers.EmployeeMapper;
+import com.sparta.week5project.mappers.SalaryMapper;
+import com.sparta.week5project.repositories.SalaryRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,10 +21,19 @@ class SalaryDAOTest {
     @Autowired
     private SalaryDAO salaryDAO;
     @Autowired
+    private SalaryMapper salaryMapper;
+    @Autowired
+    private SalaryRepository salaryRepository;
+    @Autowired
     private EmployeeDAO employeeDAO;
     @Autowired
     private EmployeeMapper employeeMapper;
 
+    @Test
+    void setSalaryDAOTest(){
+        SalaryDAO newSalaryDAO = new SalaryDAO(salaryMapper,salaryRepository);
+        Assertions.assertTrue(newSalaryDAO != null);
+    }
 
     @Test
     void findByIdTest() {
@@ -77,8 +88,6 @@ class SalaryDAOTest {
         Assertions.assertEquals(expected,result);
     }
 
-    //TODO
-    //Add null checks
     @Test
     @DisplayName("Given a job title and a year, display the range of salary values")
     void getSalaryRangeByJobTitleAndYearTest() {
