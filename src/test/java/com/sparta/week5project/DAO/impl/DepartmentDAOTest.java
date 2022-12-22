@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class DepartmentDAOTest {
     }
 
     @Test
-    @Commit
+    @Rollback
     void testDeleteByIdMethod_ShouldDelete() {
         if (departmentRepository.findByIdNumber("d013").isEmpty()) {
             DepartmentDTO departmentDTO = new DepartmentDTO();
@@ -63,14 +64,15 @@ public class DepartmentDAOTest {
     }
 
     @Test
+    @Rollback
     void testUpdate() {
-        Optional<Department> departmentOptional = departmentRepository.findByIdNumber("d014");
+        Optional<Department> departmentOptional = departmentRepository.findByIdNumber("d009");
         if (departmentOptional.isPresent()) {
             DepartmentDTO departmentNew = new DepartmentDTO();
             departmentNew.setDeptName("NewDepartment");
-            departmentDAO.update(departmentNew, "d014");
+            departmentDAO.update(departmentNew, "d009");
         }
-        Optional<Department> result = departmentRepository.findById("d014");
+        Optional<Department> result = departmentRepository.findById("d009");
         Assertions.assertEquals(result.get().getDeptName(), "NewDepartment");
     }
 

@@ -3,6 +3,7 @@ package com.sparta.week5project.DAO.impl;
 import com.sparta.week5project.DTO.EmployeeDTO;
 import com.sparta.week5project.entities.Employee;
 import com.sparta.week5project.mappers.impl.EmployeeMapperImpl;
+import com.sparta.week5project.repositories.DeptEmpRepository;
 import com.sparta.week5project.repositories.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,8 @@ class EmployeeDAOTest {
 
     @Autowired
     private EmployeeMapperImpl employeeMapper;
+    @Autowired
+    private DeptEmpRepository deptEmpRepository;
 
     @Test
     void findByIdTest() {
@@ -94,4 +97,7 @@ class EmployeeDAOTest {
         EmployeeDAO employeeDAO1 = new EmployeeDAO(employeeMapper, employeeRepository);
         Assertions.assertNotNull(employeeDAO1);
     }
+
+//    Find all the employees who worked in a named department on a given date
+
 }

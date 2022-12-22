@@ -32,7 +32,7 @@ class SalaryDAOTest {
     @Test
     void setSalaryDAOTest(){
         SalaryDAO newSalaryDAO = new SalaryDAO(salaryMapper,salaryRepository);
-        Assertions.assertTrue(newSalaryDAO != null);
+        Assertions.assertNotNull(newSalaryDAO);
     }
 
     @Test
