@@ -84,7 +84,7 @@ class EmployeeDAOTest {
 
     @Test
     void testFindEmployeeByLastNameMethod() {
-        List<Employee> employeesByLatName = employeeDAO.findEmployeeByLastName("Nitsche");
+        List<Employee> employeesByLatName = employeeDAO.findEmployeeByLastName("Aamodt");
         System.out.println(employeesByLatName);
         Assertions.assertTrue(!employeesByLatName.isEmpty());
     }
