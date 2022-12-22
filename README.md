@@ -23,7 +23,7 @@ and any changes that needed to be made
   - departments
   - dept_emp
   - dept_manager
-  - employeeSample
+  - employees
   - salaries
   - titles
 
