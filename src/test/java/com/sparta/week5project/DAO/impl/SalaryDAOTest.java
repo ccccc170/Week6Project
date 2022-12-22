@@ -1,24 +1,17 @@
 package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DTO.SalaryDTO;
-import com.sparta.week5project.entities.*;
+import com.sparta.week5project.entities.SalaryId;
 import com.sparta.week5project.mappers.EmployeeMapper;
-import com.sparta.week5project.repositories.DeptEmpRepository;
-import com.sparta.week5project.repositories.SalaryRepository;
-import com.sparta.week5project.repositories.TitleRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class SalaryDAOTest {

@@ -1,7 +1,6 @@
 package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DAO.interfaces.EmployeeService;
-import com.sparta.week5project.DTO.DeptEmpDTO;
 import com.sparta.week5project.DTO.EmployeeDTO;
 import com.sparta.week5project.entities.Employee;
 import com.sparta.week5project.mappers.impl.EmployeeMapperImpl;
@@ -10,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

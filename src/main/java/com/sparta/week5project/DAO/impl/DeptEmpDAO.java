@@ -1,12 +1,7 @@
 package com.sparta.week5project.DAO.impl;
 
-import com.sparta.week5project.DAO.interfaces.DAO;
-
-
 import com.sparta.week5project.DAO.interfaces.DeptEmpService;
-
 import com.sparta.week5project.DTO.DeptEmpDTO;
-import com.sparta.week5project.entities.DeptEmp;
 import com.sparta.week5project.entities.DeptEmpId;
 import com.sparta.week5project.mappers.DeptEmpMapper;
 import com.sparta.week5project.repositories.DepartmentRepository;

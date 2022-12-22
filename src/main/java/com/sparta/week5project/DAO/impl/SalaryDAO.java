@@ -1,12 +1,9 @@
 package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DAO.interfaces.SalaryService;
-
-import com.sparta.week5project.DTO.DeptEmpDTO;
+import com.sparta.week5project.DTO.SalaryDTO;
 import com.sparta.week5project.entities.DeptEmp;
 import com.sparta.week5project.entities.Employee;
-import com.sparta.week5project.entities.Salary;
-import com.sparta.week5project.DTO.SalaryDTO;
 import com.sparta.week5project.entities.SalaryId;
 import com.sparta.week5project.mappers.SalaryMapper;
 import com.sparta.week5project.repositories.DeptEmpRepository;
