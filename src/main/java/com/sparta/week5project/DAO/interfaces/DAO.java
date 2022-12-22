@@ -10,8 +10,6 @@ public interface DAO<T> {
 
     T save(T e);
 
-    void update(T e);
-
     void deleteById(Integer id);
 }
 

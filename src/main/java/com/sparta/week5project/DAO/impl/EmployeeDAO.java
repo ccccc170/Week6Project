@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -46,11 +47,17 @@ public class EmployeeDAO implements EmployeeService {
 
 
     @Override
-    public void update(EmployeeDTO e) {
-        e.setFirstName("INDIANA");
-        e.setFirstName("JONES");
-        employeeRepository.save(employeeMapper.dtoToEmployee(e));
-
+    public void update(EmployeeDTO e, Integer id) {
+        Optional<Employee> employeeDb = employeeRepository.findById(id);
+        if(employeeDb.isPresent()) {
+            Employee existingEmployee = employeeDb.get();
+            existingEmployee.setFirstName(e.getFirstName());
+            existingEmployee.setLastName(e.getLastName());
+            existingEmployee.setGender(e.getGender());
+            existingEmployee.setBirthDate(e.getBirthDate());
+            existingEmployee.setHireDate(e.getHireDate());
+            employeeRepository.save(existingEmployee);
+        }
     }
 
     @Override
@@ -60,7 +67,10 @@ public class EmployeeDAO implements EmployeeService {
 
     @Override
     public List<Employee> findEmployeeByLastName(String lastname) {
-        return null;
+        return employeeRepository.findAll()
+                .stream()
+                .filter(a->a.getLastName().equals(lastname))
+                        .collect(Collectors.toList());
     }
 
     @Override
