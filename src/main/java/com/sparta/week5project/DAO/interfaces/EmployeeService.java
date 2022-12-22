@@ -16,6 +16,8 @@ public interface EmployeeService extends DAO<EmployeeDTO>{
 
     Map<String, Double> getDifferenceInPay();
 
+    void update(EmployeeDTO e,Integer id );
+
 
 
 }
