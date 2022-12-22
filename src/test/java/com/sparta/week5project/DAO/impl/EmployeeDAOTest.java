@@ -31,9 +31,7 @@ class EmployeeDAOTest {
 
     @Test
     void findByIdTest() {
-<<<<<<< HEAD
         System.out.println(employeeDAO.findById(10005).get());
-=======
         System.out.println(employeeDAO.findById(10002).get());
         Optional<EmployeeDTO> employee = employeeDAO.findById(10002);
         Assertions.assertTrue(employee.isPresent());
@@ -69,7 +67,6 @@ class EmployeeDAOTest {
             employeeDAO.update(employeeMapper.employeeToDto(employee1), 10008);
         }
         Assertions.assertTrue(employeeDAO.findById(10008).get().getFirstName().equals("John") );
->>>>>>> 50d0850d4bc4fc82444299cab303682d5ff67ead
 
     }
     @Test
