@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 @EnableAutoConfiguration
 public class DepartmentDAO implements DepartmentService {
+    // Provide a summary of the size of each department (number of staff) over a given period (start year to end year)
     @Autowired
     private DepartmentMapperImpl departmentMapper;
 
