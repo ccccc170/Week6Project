@@ -37,21 +37,28 @@ public class DepartmentDAO implements DepartmentService {
 
     @Override
     public DepartmentDTO save(DepartmentDTO e) {
-        return null;
+        return departmentMapper.departmentToDTO(departmentRepository.save(departmentMapper.dtoToDepartment(e)));
     }
 
     @Override
-    public void update(DepartmentDTO e) {
-
+    public void update(DepartmentDTO e, String id) {
+        Optional<Department> departmentDb = departmentRepository.findByIdNumber(id);
+        if(departmentDb.isPresent()) {
+            Department updatedDepartment = departmentDb.get();
+            updatedDepartment.setDeptName(e.getDeptName());
+            departmentRepository.save(updatedDepartment);
+        }
     }
 
     @Override
-    public void deleteById(Integer id) {
-
+    public void deleteById(String id) {
+        if(departmentRepository.findByIdNumber(id).isPresent()) {
+            departmentRepository.deleteById(id);
+        }
     }
 
-    @Override
-    public Map<String, Integer> getDepartmentSizeByYearRange(Integer from, Integer to) {
-        return null;
-    }
+//    @Override
+//    public Map<String, Integer> getDepartmentSizeByYearRange(Integer from, Integer to) {
+//        return null;
+//    }
 }

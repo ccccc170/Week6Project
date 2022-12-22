@@ -9,12 +9,14 @@ import com.sparta.week5project.entities.SalaryId;
 import com.sparta.week5project.mappers.SalaryMapper;
 import com.sparta.week5project.repositories.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 @Service
+@EnableAutoConfiguration
 public class SalaryDAO implements SalaryService {
 
     @Autowired
@@ -22,6 +24,15 @@ public class SalaryDAO implements SalaryService {
 
     @Autowired
     private SalaryRepository salaryRepository;
+
+    public SalaryDAO(SalaryMapper salaryMapper, SalaryRepository salaryRepository) {
+        this.salaryMapper = salaryMapper;
+        this.salaryRepository = salaryRepository;
+    }
+
+    public SalaryDAO (){
+
+    }
 
     @Override
     public Optional<SalaryDTO> findById(SalaryId id) {
@@ -44,14 +55,4 @@ public class SalaryDAO implements SalaryService {
         salaryRepository.deleteById(id);
     }
 
-
-    @Override
-    public Double averageSalaryForDepartmentAndDate(Integer deptId, LocalDate from, LocalDate to) {
-        return null;
-    }
-
-    @Override
-    public List<Double> getSalaryRangeByJobTitleAndYear(String jobTitle, Integer year) {
-        return null;
-    }
 }

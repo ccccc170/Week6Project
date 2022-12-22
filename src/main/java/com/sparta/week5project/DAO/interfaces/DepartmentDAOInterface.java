@@ -9,7 +9,7 @@ public interface DepartmentDAOInterface {
 
     DepartmentDTO save(DepartmentDTO e);
 
-    void update(DepartmentDTO e);
+    void update(DepartmentDTO e, String id);
 
-    void deleteById(Integer id);
+    void deleteById(String id);
 }
