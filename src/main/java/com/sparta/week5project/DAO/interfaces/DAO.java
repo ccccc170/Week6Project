@@ -1,6 +1,6 @@
 package com.sparta.week5project.DAO.interfaces;
 
-import com.sparta.week5project.entities.Employee;
+import com.sparta.week5project.DTO.DeptEmpDTO;
 
 import java.util.Optional;
 

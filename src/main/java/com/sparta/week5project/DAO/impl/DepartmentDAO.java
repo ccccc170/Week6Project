@@ -1,24 +1,47 @@
 package com.sparta.week5project.DAO.impl;
 
 import com.sparta.week5project.DAO.interfaces.DepartmentService;
+import com.sparta.week5project.DTO.DepartmentDTO;
 import com.sparta.week5project.entities.Department;
+import com.sparta.week5project.mappers.impl.DepartmentMapperImpl;
+import com.sparta.week5project.repositories.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Optional;
 
+@Service
+@EnableAutoConfiguration
 public class DepartmentDAO implements DepartmentService {
+    // Provide a summary of the size of each department (number of staff) over a given period (start year to end year)
+    @Autowired
+    private DepartmentMapperImpl departmentMapper;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    public DepartmentDAO(DepartmentMapperImpl departmentMapper, DepartmentRepository departmentRepository) {
+        this.departmentMapper = departmentMapper;
+        this.departmentRepository = departmentRepository;
+    }
+
+    public DepartmentDAO() {
+    }
+
     @Override
-    public Optional<Department> findById(Integer id) {
+    public Optional<DepartmentDTO> findByDept_No(String dept_no) {
+        return Optional.of(departmentMapper.departmentToDTO(departmentRepository.findByIdNumber(dept_no).get()));
+    }
+
+    @Override
+    public DepartmentDTO save(DepartmentDTO e) {
         return null;
     }
 
     @Override
-    public Department save(Department e) {
-        return null;
-    }
-
-    @Override
-    public void update(Department e) {
+    public void update(DepartmentDTO e) {
 
     }
 
