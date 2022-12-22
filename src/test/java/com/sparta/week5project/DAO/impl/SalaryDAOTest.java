@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -43,13 +44,13 @@ class SalaryDAOTest {
     }
 
     @Test
-    @Commit
+    @Rollback
     void save() {
         SalaryDTO salaryDTO= new SalaryDTO();
         SalaryId salaryId = new SalaryId();
 
         salaryId.setEmpNo(10001);
-        salaryId.setFromDate(LocalDate.of(2000,06,26));
+        salaryId.setFromDate(LocalDate.of(1986,06,26));
 
         salaryDTO.setSalary(90000);
         salaryDTO.setToDate(LocalDate.of(2020,12,15));
@@ -59,7 +60,7 @@ class SalaryDAOTest {
     }
 
     @Test
-    @Commit
+    @Rollback
     void update() {
         SalaryId salaryId = new SalaryId();
 
@@ -69,11 +70,12 @@ class SalaryDAOTest {
     }
 
     @Test
+    @Rollback
     void deleteById() {
         SalaryId salaryId = new SalaryId();
 
         salaryId.setEmpNo(10001);
-        salaryId.setFromDate(LocalDate.of(2000,06,26));
+        salaryId.setFromDate(LocalDate.of(2001,06,22));
 
         salaryDAO.deleteById(salaryId);
     }
@@ -87,6 +89,9 @@ class SalaryDAOTest {
 
         System.out.println("Getting employees from department");
         List<DeptEmp> deptEmpList = deptEmpRepository.findAllByDeptNumberSQL(departmentNumber);
+
+        double average = 0.0;
+
 //        for (DeptEmp d: deptEmpList) {
 //            System.out.println(d.getEmpNo().getId());
 //
@@ -99,10 +104,8 @@ class SalaryDAOTest {
         for (int i = 0;i < 10;i++) { //Only the first 10
             Integer empNo = deptEmpList.get(i).getEmpNo().getId();
 
-            Optional<Integer> someSalary = salaryRepository.findSalaryByEmpNoAndDateSQL(empNo,givenDate);
-            if (someSalary.isPresent()){
-                salaryList.add(someSalary.get());
-            }
+            List<Integer> someSalary = salaryRepository.findSalaryByEmpNoAndDateSQL(empNo,givenDate);
+            salaryList.addAll(someSalary);
         }
         System.out.println("\nCalculating average...\n");
         int total = 0;
@@ -111,8 +114,9 @@ class SalaryDAOTest {
         }
         System.out.println("-------------");
 
-        double average = total/salaryList.size();
-
+        if (salaryList.size()!=0) {
+            average = total / salaryList.size();
+        }
         System.out.println(average);
     }
 
@@ -166,9 +170,6 @@ class SalaryDAOTest {
             }
         }
 
-//        System.out.println(maleEmps);
-//        System.out.println(femEmps);
-
         for(int i = 0; i < 50; i++){
             if (salaryRepository.findSalaryByEmpNoAndToDate(maleEmps.get(i).getId(), givenYear).isPresent()){
                 maleSalaries.add(salaryRepository.findSalaryByEmpNoAndToDate(maleEmps.get(i).getId(), givenYear).get());
@@ -192,7 +193,6 @@ class SalaryDAOTest {
 //            femSalaries.add(salaryRepository.findCurrentSalaryByEmpNo(e.getId()).get());
 //            }
 //        }
-
 
         for (Integer salary : maleSalaries) {
         maleSalaryTotal += salary;
