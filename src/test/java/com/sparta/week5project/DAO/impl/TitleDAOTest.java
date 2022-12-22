@@ -47,6 +47,7 @@ class TitleDAOTest {
     }
 
     @Test
+    @Rollback
     void save() {
         Employee employee1 = new Employee();
         employee1.setFirstName("John");
@@ -73,6 +74,7 @@ class TitleDAOTest {
     }
 
     @Test
+    @Rollback
     void updateTest() {
         Employee employee1 = new Employee();
         employee1.setFirstName("Peter");
@@ -104,7 +106,7 @@ class TitleDAOTest {
 
 
     @Test
-//    @Rollback
+    @Rollback
 //    @Commit
 //    @Transactional
     void deleteById() {

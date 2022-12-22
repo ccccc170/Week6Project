@@ -45,6 +45,7 @@ class DepartmentManagerDAOTest {
     }
 
     @Test
+    @Rollback
     void saveTest() {
         Optional<Employee> employee = employeeRepository.findById(10001);
 
@@ -66,10 +67,11 @@ class DepartmentManagerDAOTest {
     Assertions.assertTrue(departmentManagerDAO.findById(deptManagerId).isPresent());
     }
     @Test
+    @Rollback
     void updateTest() {
         DeptManagerId deptManagerId = new DeptManagerId();
-        deptManagerId.setEmpNo(110022);
-        deptManagerId.setDeptNo("d001");
+        deptManagerId.setEmpNo(110085);
+        deptManagerId.setDeptNo("d002");
 
         Department department = new Department();
         department.setDeptName("Staff");
