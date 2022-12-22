@@ -19,6 +19,14 @@ public class DepartmentManagerDAO implements DepartmentManagerService<DeptManage
     @Autowired
     private DeptManagerMapperImpl deptManagerMapper;
 
+    public DepartmentManagerDAO(DeptManagerRepository deptManagerRepository, DeptManagerMapperImpl deptManagerMapper) {
+        this.deptManagerRepository = deptManagerRepository;
+        this.deptManagerMapper = deptManagerMapper;
+    }
+
+    public DepartmentManagerDAO() {
+    }
+
     @Override
     public Optional<DeptManagerDTO> findById(DeptManagerId id) {
         return Optional.of(deptManagerMapper.deptManagerToDTO(deptManagerRepository.findById(id).get()));

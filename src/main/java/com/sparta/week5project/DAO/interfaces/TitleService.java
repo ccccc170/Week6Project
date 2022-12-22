@@ -11,7 +11,7 @@ public interface TitleService<T> {
 
     TitleDTO save(TitleDTO e);
 
-    void update(TitleDTO e);
+    void update(TitleDTO e,TitleId id);
 
     void deleteById(TitleId id);
 }
