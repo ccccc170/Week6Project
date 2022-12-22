@@ -64,4 +64,15 @@ public class DeptManagerDTO {
     public void setToDate(LocalDate toDate) {
         this.toDate = toDate;
     }
+
+    @Override
+    public String toString() {
+        return "DeptManagerDTO{" +
+                "id=" + id +
+                ", empNo=" + empNo +
+                ", deptNo=" + deptNo +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                '}';
+    }
 }

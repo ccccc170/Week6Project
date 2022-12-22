@@ -12,7 +12,7 @@ import com.sparta.week5project.repositories.TitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
-
+import java.util.Optional;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -43,12 +43,12 @@ public class SalaryDAO implements SalaryService {
 
     @Override
     public Optional<SalaryDTO> findById(SalaryId id) {
-        return Optional.of(salaryMapper.SalaryToDTO(salaryRepository.findById(id).get()));
+        return Optional.of(salaryMapper.salaryToDTO(salaryRepository.findById(id).get()));
     }
 
     @Override
     public SalaryDTO save(SalaryDTO e) {
-        return salaryMapper.SalaryToDTO(salaryRepository.save(salaryMapper.dtoToSalary(e)));
+        return salaryMapper.salaryToDTO(salaryRepository.save(salaryMapper.dtoToSalary(e)));
     }
 
     @Override

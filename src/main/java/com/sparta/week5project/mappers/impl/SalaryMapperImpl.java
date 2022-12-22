@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class SalaryMapperImpl implements SalaryMapper {
 
     @Override
-    public SalaryDTO SalaryToDTO(Salary salary) {
+    public SalaryDTO salaryToDTO(Salary salary) {
         if (salary == null){
             return null;
         }

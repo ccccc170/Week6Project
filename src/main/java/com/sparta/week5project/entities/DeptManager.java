@@ -70,4 +70,14 @@ public class DeptManager {
         this.toDate = toDate;
     }
 
+    @Override
+    public String toString() {
+        return "DeptManager{" +
+                "id=" + id +
+                ", empNo=" + empNo +
+                ", deptNo=" + deptNo +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                '}';
+    }
 }
