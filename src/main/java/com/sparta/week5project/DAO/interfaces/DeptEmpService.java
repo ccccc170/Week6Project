@@ -7,16 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface DeptEmpService<T> {
 
-    Optional<T> findById(DeptEmpId id);
-
-    DeptEmpDTO save(DeptEmpDTO e);
-
-    void update(DeptEmpDTO e);
-
-    void deleteById(DeptEmpId id);
+    public Integer getDepartmentsCount(String departmentNo, LocalDate fromDate, LocalDate toDate);
+    public Map<String, Integer> getSummary(LocalDate fromDate, LocalDate toDate);
 
 }
