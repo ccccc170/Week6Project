@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sparta</groupId>
-    <artifactId>Week5Project</artifactId>
+    <artifactId>Week6Project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Week5Project</name>
     <description>Week5Project</description>
