@@ -64,10 +64,11 @@ public class EmployeeDAO implements EmployeeService {
 
     @Override
     public List<Employee> findEmployeeByLastName(String lastname) {
-        return employeeRepository.findAll()
-                .stream()
-                .filter(a->a.getLastName().equals(lastname))
-                        .collect(Collectors.toList());
+//        return employeeRepository.findAll()
+//                .stream()
+//                .filter(a->a.getLastName().equals(lastname))
+//                        .collect(Collectors.toList());
+        return employeeRepository.findAllBylastName(lastname);
     }
 
 }
