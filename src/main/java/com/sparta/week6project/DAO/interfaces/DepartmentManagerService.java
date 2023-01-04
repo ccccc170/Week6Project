@@ -11,7 +11,7 @@ public interface DepartmentManagerService <T> {
     DeptManagerDTO
     save(DeptManagerDTO e);
 
-    void update(DeptManagerDTO e, DeptManagerId id);
+    void update(DeptManagerDTO e);
 
     void deleteById(DeptManagerId id);
 }
