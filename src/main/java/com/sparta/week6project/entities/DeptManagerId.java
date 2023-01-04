@@ -53,4 +53,5 @@ public class DeptManagerId implements Serializable {
                 ", deptNo='" + deptNo + '\'' +
                 '}';
     }
+
 }
