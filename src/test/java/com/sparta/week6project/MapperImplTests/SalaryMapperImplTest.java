@@ -59,7 +59,7 @@ public class SalaryMapperImplTest {
         salaryDTO.setSalary(24000);
         salaryDTO.setToDate(LocalDate.of(2012, 01, 01));
         salaryDTO.setId(salaryId);
-        salaryDTO.setEmpNo(employee);
+        salaryDTO.setEmpNo(employee.getId());
 
         Salary result = salaryMapper.dtoToSalary(salaryDTO);
         System.out.println(result);
