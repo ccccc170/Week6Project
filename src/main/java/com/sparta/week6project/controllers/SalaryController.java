@@ -54,6 +54,9 @@ public class SalaryController {
             return new SalaryDTO();
     }
 
-
+    @DeleteMapping("/")
+    public void deleteById(@RequestBody SalaryId salaryId){
+        salaryDAO.deleteById(salaryId);
+    }
 }
 
