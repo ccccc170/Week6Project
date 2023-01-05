@@ -84,4 +84,16 @@ public class DepartmentManagerController {
         }
         //return departmentManagerDAO.save(deptManagerDTO);
     }
+    @DeleteMapping("/")
+    public String delete(@RequestBody DeptManagerId deptManagerId){
+        try{
+            if(departmentManagerDAO.findById(deptManagerId).isPresent()){
+                departmentManagerDAO.deleteById(deptManagerId);
+                return "{\"message\": " + "\"" + deptManagerId + " has been deleted!}" + "\"}";
+            }
+            return "{\"message\": " + "\"" + deptManagerId + " has been deleted!}" + "\"}";
+        }catch (Exception e){
+            return "{\"message\": " + "\"" + deptManagerId + " does not exist in department manager !}" + "\"";
+        }
+    }
 }
