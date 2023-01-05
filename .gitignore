@@ -32,3 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 *.properties
+
+
+### Log File ###
+src/main/resources/log4j.log
