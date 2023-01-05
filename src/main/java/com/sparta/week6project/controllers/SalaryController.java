@@ -6,6 +6,7 @@ import com.sparta.week6project.entities.SalaryId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -58,5 +59,23 @@ public class SalaryController {
     public void deleteById(@RequestBody SalaryId salaryId){
         salaryDAO.deleteById(salaryId);
     }
+
+    // Advanced analytical methods
+
+    @GetMapping("/salaryAverage/")
+    public double getSalaryAverageByDepartmentNumberAndDate(@RequestParam String departmentNumber, LocalDate givenDate){
+        return salaryDAO.averageSalaryForDepartmentAndDate(departmentNumber,givenDate);
+    }
+
+    @GetMapping("/salaryRange/")
+    public String getSalaryRangeByTitleAndYear(@RequestParam String jobTitle, @RequestParam int givenYear){
+        return salaryDAO.getSalaryRangeByJobTitleAndYear(jobTitle,givenYear);
+    }
+
+    @GetMapping("/salaryPayGap/")
+    public String getGenderPayGapByDepartmentNumberAndYear(@RequestParam String departmentNumber, LocalDate givenYear){
+        return salaryDAO.getGenderPayGap(departmentNumber,givenYear);
+    }
+
 }
 
