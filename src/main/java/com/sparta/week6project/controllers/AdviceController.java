@@ -46,4 +46,11 @@ public class AdviceController {
         log.log(Level.ERROR, e.getMessage());
         return "<h1>No such element in database</h1>";
     }
+
+    @ExceptionHandler(IndexOutOfBoundsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleMethodIndexOutOfBoundsExceptions(IndexOutOfBoundsException e){
+        log.log(Level.ERROR, e.getMessage());
+        return "<h1>Index out of bounds</h1>";
+    }
 }
