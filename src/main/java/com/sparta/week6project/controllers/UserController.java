@@ -25,12 +25,16 @@ public class UserController {
 
     @GetMapping("/setup")
     public void setup(){
-        User admin = new User();
-        admin.setEmail("admin@example.com");
-        admin.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
-        admin.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
-        admin.setRole(100);
-        userDAO.save(admin);
+        if (userDAO.findByEmail("admin@example.com").isEmpty()) {
+            User admin = new User();
+            admin.setEmail("admin@example.com");
+            admin.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
+            admin.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
+            admin.setRole(100);
+            userDAO.save(admin);
+        }
+
+        if (userDAO.findByEmail("CRU@example.com").isEmpty()) {
 
         User updateUser = new User();
         updateUser.setEmail("CRU@example.com");
@@ -38,20 +42,27 @@ public class UserController {
         updateUser.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
         updateUser.setRole(10);
         userDAO.save(updateUser);
+        }
 
-        User user = new User();
-        user.setEmail("basic-user@example.com");
-        user.setApiKey(new UUID( new Random().nextInt(), new Random().nextInt()));
-        user.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
-        user.setRole(1);
-        userDAO.save(user);
+        if (userDAO.findByEmail("basic-user@example.com").isEmpty()) {
 
-        User unAuthUser = new User();
-        unAuthUser.setEmail("no-access@example.com");
-        unAuthUser.setApiKey(new UUID( new Random().nextInt(), new Random().nextInt()));
-        unAuthUser.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
-        unAuthUser.setRole(-1);
-        userDAO.save(unAuthUser);
+            User user = new User();
+            user.setEmail("basic-user@example.com");
+            user.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
+            user.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
+            user.setRole(1);
+            userDAO.save(user);
+        }
+
+        if (userDAO.findByEmail("no-access@example.com").isEmpty()) {
+
+            User unAuthUser = new User();
+            unAuthUser.setEmail("no-access@example.com");
+            unAuthUser.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
+            unAuthUser.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
+            unAuthUser.setRole(-1);
+            userDAO.save(unAuthUser);
+        }
     }
 
 }
