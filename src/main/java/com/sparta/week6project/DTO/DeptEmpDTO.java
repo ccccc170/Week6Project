@@ -14,10 +14,10 @@ public class DeptEmpDTO {
     private DeptEmpId id;
 
 
-    private Employee empNo;
+    private Integer empNo;
 
 
-    private Department deptNo;
+    private String deptNo;
 
 
     private LocalDate fromDate;
@@ -42,19 +42,19 @@ public class DeptEmpDTO {
         this.id = id;
     }
 
-    public Employee getEmpNo() {
+    public Integer getEmpNo() {
         return empNo;
     }
 
-    public void setEmpNo(Employee empNo) {
+    public void setEmpNo(Integer empNo) {
         this.empNo = empNo;
     }
 
-    public Department getDeptNo() {
+    public String getDeptNo() {
         return deptNo;
     }
 
-    public void setDeptNo(Department deptNo) {
+    public void setDeptNo(String deptNo) {
         this.deptNo = deptNo;
     }
 

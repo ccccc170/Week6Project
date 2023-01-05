@@ -55,7 +55,7 @@ class SalaryDAOTest {
         salaryDTO.setSalary(90000);
         salaryDTO.setToDate(LocalDate.of(2020,12,15));
         salaryDTO.setId(salaryId);
-        salaryDTO.setEmpNo(employeeMapper.dtoToEmployee(employeeDAO.findById(salaryId.getEmpNo()).get()));
+        salaryDTO.setEmpNo(employeeMapper.dtoToEmployee(employeeDAO.findById(salaryId.getEmpNo()).get()).getId());
         salaryDAO.save(salaryDTO);
     }
 

@@ -4,10 +4,17 @@ package com.sparta.week6project.mappers.impl;
 import com.sparta.week6project.DTO.DeptEmpDTO;
 import com.sparta.week6project.entities.DeptEmp;
 import com.sparta.week6project.mappers.DeptEmpMapper;
+import com.sparta.week6project.repositories.DepartmentRepository;
+import com.sparta.week6project.repositories.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DeptEmpMapperImpl implements DeptEmpMapper {
+    @Autowired
+    EmployeeRepository employeeRepository;
+    @Autowired
+    DepartmentRepository departmentRepository;
     @Override
     public DeptEmpDTO deptEmpToDTO(DeptEmp deptEmp) {
         if(deptEmp == null) {
@@ -17,8 +24,8 @@ public class DeptEmpMapperImpl implements DeptEmpMapper {
         DeptEmpDTO deptEmpDTO = new DeptEmpDTO();
 
         deptEmpDTO.setId(deptEmp.getId());
-        deptEmpDTO.setEmpNo(deptEmp.getEmpNo());
-        deptEmpDTO.setDeptNo(deptEmp.getDeptNo());
+        deptEmpDTO.setEmpNo(deptEmp.getEmpNo().getId());
+        deptEmpDTO.setDeptNo(deptEmp.getDeptNo().getId());
         deptEmpDTO.setFromDate(deptEmp.getFromDate());
         deptEmpDTO.setToDate(deptEmp.getToDate());
 
@@ -34,8 +41,8 @@ public class DeptEmpMapperImpl implements DeptEmpMapper {
         DeptEmp deptEmp = new DeptEmp();
 
         deptEmp.setId(deptEmpDTO.getId());
-        deptEmp.setEmpNo(deptEmpDTO.getEmpNo());
-        deptEmp.setDeptNo(deptEmpDTO.getDeptNo());
+        deptEmp.setEmpNo(employeeRepository.findById(deptEmpDTO.getEmpNo()).get());
+        deptEmp.setDeptNo(departmentRepository.findById(deptEmpDTO.getDeptNo()).get());
         deptEmp.setFromDate(deptEmpDTO.getFromDate());
         deptEmp.setToDate(deptEmpDTO.getToDate());
 

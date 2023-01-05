@@ -58,9 +58,9 @@ class DepartmentManagerDAOTest {
     DeptManagerDTO deptManagerDTO = new DeptManagerDTO();
     deptManagerDTO.setToDate(LocalDate.of(2022, 1,1));
     deptManagerDTO.setFromDate(LocalDate.of(1999,5,5));
-    deptManagerDTO.setDeptNo(department);
+    deptManagerDTO.setDeptNo(department.getId());
     deptManagerDTO.setId(deptManagerId);
-    deptManagerDTO.setEmpNo(employee.get());
+    deptManagerDTO.setEmpNo(employee.get().getId());
     if(deptManagerRepository.findById(deptManagerId).isEmpty()) {
         DeptManagerDTO save = departmentManagerDAO.save(deptManagerDTO);
     }
@@ -80,12 +80,12 @@ class DepartmentManagerDAOTest {
         Optional<DeptManager> deptManager = deptManagerRepository.findById(deptManagerId);
         if (deptManager.isPresent()) {
             DeptManagerDTO deptManagerDTO = new DeptManagerDTO();
-            deptManagerDTO.setEmpNo(employeeRepository.findById(10003).get());
+            deptManagerDTO.setEmpNo(employeeRepository.findById(10003).get().getId());
             deptManagerDTO.setId(deptManagerId);
             deptManagerDTO.setFromDate(LocalDate.of(1999, 1, 1));
             deptManagerDTO.setToDate(LocalDate.of(2020, 5, 7));
-            deptManagerDTO.setDeptNo(department);
-            departmentManagerDAO.update(deptManagerDTO, deptManagerId);
+            deptManagerDTO.setDeptNo(department.getId());
+            departmentManagerDAO.update(deptManagerDTO);
         }
         if (deptManagerRepository.findById(deptManagerId).isPresent()) {
             Optional<DeptManager> deptartmentManeger1 = deptManagerRepository.findById(deptManagerId);

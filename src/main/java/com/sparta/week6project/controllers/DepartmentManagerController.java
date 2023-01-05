@@ -1,0 +1,65 @@
+package com.sparta.week6project.controllers;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sparta.week6project.DAO.impl.DepartmentManagerDAO;
+import com.sparta.week6project.DTO.DeptEmpDTO;
+import com.sparta.week6project.DTO.DeptManagerDTO;
+import com.sparta.week6project.DTO.EmployeeDTO;
+import com.sparta.week6project.entities.DeptManagerId;
+import com.sparta.week6project.entities.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/departmentManager")
+public class DepartmentManagerController {
+    @Autowired
+    DepartmentManagerDAO departmentManagerDAO;
+
+    @GetMapping("/")
+    public DeptManagerDTO findById(@RequestBody DeptManagerId deptManagerId){
+        DeptManagerDTO deptManagerDTO = null;
+        System.out.println(deptManagerId);
+        Optional<DeptManagerDTO> deptEmpDTOOptional = null;
+        try{
+            deptEmpDTOOptional = departmentManagerDAO.findById(deptManagerId);
+        }catch (Exception e){
+            return new DeptManagerDTO();
+        }
+
+        System.out.println(deptEmpDTOOptional.get());
+        if (deptEmpDTOOptional.isPresent()){
+            deptManagerDTO = deptEmpDTOOptional.get();
+        }
+        return deptManagerDTO;
+    }
+    @PatchMapping("/")
+    public DeptManagerDTO update(@RequestBody DeptManagerDTO deptManagerDTO){
+        System.out.println(deptManagerDTO);
+        DeptManagerId deptManagerId = new DeptManagerId();
+        deptManagerId.setDeptNo(deptManagerDTO.getDeptNo());
+        deptManagerId.setEmpNo(deptManagerDTO.getEmpNo());
+        System.out.println(deptManagerId);
+        DeptManagerDTO original = null;
+        Optional<DeptManagerDTO> originalOptional = departmentManagerDAO.findById(deptManagerId);
+        try{
+            original = originalOptional.get();
+            if (deptManagerDTO.getFromDate() != null){
+                original.setFromDate(deptManagerDTO.getFromDate());
+            }
+            if (deptManagerDTO.getToDate() != null) {
+                original.setToDate(deptManagerDTO.getToDate());
+                departmentManagerDAO.update(original);
+            }
+        }catch (Exception e){
+            return new DeptManagerDTO();
+        }
+
+        return original;
+    }
+}

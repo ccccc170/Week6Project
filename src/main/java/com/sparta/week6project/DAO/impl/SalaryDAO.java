@@ -62,7 +62,7 @@ public class SalaryDAO implements SalaryService {
         salaryRepository.deleteById(id);
     }
 
-    double averageSalaryForDepartmentAndDate(String departmentNumber, LocalDate givenDate) {
+    public double averageSalaryForDepartmentAndDate(String departmentNumber, LocalDate givenDate) {
 //        System.out.println("Getting employees from department");
         List<DeptEmp> deptEmpList = deptEmpRepository.findAllByDeptNumberSQL(departmentNumber);
         double average = 0.0;
