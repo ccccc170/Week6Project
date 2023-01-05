@@ -10,6 +10,7 @@ import com.sparta.week6project.DTO.DeptManagerDTO;
 import com.sparta.week6project.DTO.EmployeeDTO;
 import com.sparta.week6project.entities.DeptManagerId;
 import com.sparta.week6project.entities.Employee;
+import com.sparta.week6project.repositories.DeptManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,8 @@ import java.util.Optional;
 public class DepartmentManagerController {
     @Autowired
     DepartmentManagerDAO departmentManagerDAO;
+    @Autowired
+    private DeptManagerRepository deptManagerRepository;
 
     @GetMapping("/")
     public DeptManagerDTO findById(@RequestBody DeptManagerId deptManagerId){
@@ -61,5 +64,24 @@ public class DepartmentManagerController {
         }
 
         return original;
+    }
+    @PostMapping("/")
+    public DeptManagerDTO create(@RequestBody DeptManagerDTO deptManagerDTO){
+        DeptManagerId deptManagerId = new DeptManagerId();
+        deptManagerId.setDeptNo(deptManagerDTO.getDeptNo());
+        deptManagerId.setEmpNo(deptManagerDTO.getEmpNo());
+        deptManagerDTO.setId(deptManagerId);
+        System.out.println(deptManagerId);
+        System.out.println(deptManagerDTO);
+        if(deptManagerRepository.findById(deptManagerId).isEmpty()){
+            System.out.println("Departmanager doesnt exist");
+            //DeptManagerDTO newDeptManager = departmentManagerDAO.save(deptManagerDTO);
+            deptManagerRepository.saveDeptManager(deptManagerDTO.getEmpNo(), deptManagerDTO.getDeptNo(),deptManagerDTO.getFromDate(), deptManagerDTO.getToDate());
+            return deptManagerDTO;
+        }else{
+            System.out.println("department manager exist");
+            return new DeptManagerDTO();
+        }
+        //return departmentManagerDAO.save(deptManagerDTO);
     }
 }
