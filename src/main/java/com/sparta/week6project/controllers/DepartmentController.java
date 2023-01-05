@@ -24,7 +24,7 @@ public class DepartmentController {
         return departmentDAO.save(departmentDTO);
     }
 
-    @PatchMapping("/")
+    @PutMapping("/")
     public DepartmentDTO update(@RequestBody DepartmentDTO departmentDTO) {
         Optional<DepartmentDTO> originalOptional = departmentDAO.findByDept_No(departmentDTO.getId());
         if (originalOptional.isPresent()) {
