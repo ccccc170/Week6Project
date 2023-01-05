@@ -22,9 +22,9 @@ public class User {
     @Column(name = "api_expiry")
     private Date apiExpiry;
 
-    // "1 is a Basic User, 10 is an Update user and 100 is Admin"
+    // BASIC User, UPDATE user and ADMIN user"
     @Column(name = "role")
-    private Integer role;
+    private String role;
 
     public String getEmail() {
         return email;
@@ -50,11 +50,11 @@ public class User {
         this.apiExpiry = apiExpiry;
     }
 
-    public Integer getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

@@ -15,5 +15,5 @@ public class UserDto implements Serializable {
     private final String email;
     private final UUID apiKey;
     private final Date apiExpiry;
-    private final Integer role;
+    private final String role;
 }

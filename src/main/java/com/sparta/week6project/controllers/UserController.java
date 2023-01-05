@@ -30,7 +30,7 @@ public class UserController {
             admin.setEmail("admin@example.com");
             admin.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
             admin.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
-            admin.setRole(100);
+            admin.setRole("ADMIN");
             userDAO.save(admin);
         }
 
@@ -40,7 +40,7 @@ public class UserController {
         updateUser.setEmail("CRU@example.com");
         updateUser.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
         updateUser.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
-        updateUser.setRole(10);
+        updateUser.setRole("UPDATE");
         userDAO.save(updateUser);
         }
 
@@ -50,7 +50,7 @@ public class UserController {
             user.setEmail("basic-user@example.com");
             user.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
             user.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
-            user.setRole(1);
+            user.setRole("BASIC");
             userDAO.save(user);
         }
 
@@ -60,9 +60,10 @@ public class UserController {
             unAuthUser.setEmail("no-access@example.com");
             unAuthUser.setApiKey(new UUID(new Random().nextInt(), new Random().nextInt()));
             unAuthUser.setApiExpiry(Date.from(Instant.now().plusMillis(604800)));
-            unAuthUser.setRole(-1);
+            unAuthUser.setRole("UNAUTHORISED");
             userDAO.save(unAuthUser);
         }
+        // TODO: success response
     }
 
 }

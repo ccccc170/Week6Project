@@ -32,7 +32,7 @@ public class EmployeeController {
         User user = userRepository.findByApiKey(apiKey).get();
 
 
-        if (user.getRole() >= 1){
+        if (user.getRole().equals("BASIC") || user.getRole().equals("UPDATE") || user.getRole().equals("ADMIN") ){
 
             return employeeDAO.findById(id).get();
     }
@@ -46,7 +46,7 @@ public class EmployeeController {
         UUID apiKey = UUID.fromString(api);
         User user = userRepository.findByApiKey(apiKey).get();
 
-        if (user.getRole() >= 10) {
+        if (user.getRole().equals("UPDATE") || user.getRole().equals("ADMIN") ) {
 
             return employeeDAO.save(employeeDTO);
         }
@@ -60,7 +60,7 @@ public class EmployeeController {
         UUID apiKey = UUID.fromString(api);
         User user = userRepository.findByApiKey(apiKey).get();
 
-        if (user.getRole() >= 10) {
+        if (user.getRole().equals("UPDATE") || user.getRole().equals("ADMIN") ) {
 
 
             Optional<EmployeeDTO> originalOptional = employeeDAO.findById(newEmployeeDTO.getId());
@@ -96,7 +96,7 @@ public class EmployeeController {
         UUID apiKey = UUID.fromString(api);
         User user = userRepository.findByApiKey(apiKey).get();
 
-        if (user.getRole() >= 100) {
+        if ( user.getRole().equals("ADMIN") ) {
             employeeDAO.deleteById(id);
         }
         throw new AuthenticationException("Not authorised");
@@ -108,7 +108,7 @@ public class EmployeeController {
         UUID apiKey = UUID.fromString(api);
         User user = userRepository.findByApiKey(apiKey).get();
 
-        if (user.getRole() >= 1) {
+        if (user.getRole().equals("BASIC") || user.getRole().equals("UPDATE") || user.getRole().equals("ADMIN") ) {
             return employeeDAO.findEmployeeByLastName(lastName);
         }
 
