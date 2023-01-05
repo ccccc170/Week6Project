@@ -1,0 +1,7 @@
+## Rename this file application.properties and fill in details
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.url=
+
+## this is required for user table to be created by spring automatically 
+spring.jpa.hibernate.ddl-auto=update
