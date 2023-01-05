@@ -4,6 +4,8 @@ import com.sparta.week6project.DAO.impl.SalaryDAO;
 import com.sparta.week6project.DTO.SalaryDTO;
 import com.sparta.week6project.entities.SalaryId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -68,13 +70,20 @@ public class SalaryController {
     }
 
     @GetMapping("/salaryRange/")
-    public String getSalaryRangeByTitleAndYear(@RequestParam String jobTitle, @RequestParam int givenYear){
-        return salaryDAO.getSalaryRangeByJobTitleAndYear(jobTitle,givenYear);
+    public ResponseEntity getSalaryRangeByTitleAndYear(@RequestParam String jobTitle, @RequestParam int givenYear){
+        ResponseEntity returnValue= null;
+        String result = salaryDAO.getSalaryRangeByJobTitleAndYear(jobTitle,givenYear);
+        returnValue = new ResponseEntity<>("{\"message\":\""+result+"\"}", HttpStatus.FOUND);
+
+        return returnValue;
     }
 
     @GetMapping("/salaryPayGap/")
-    public String getGenderPayGapByDepartmentNumberAndYear(@RequestParam String departmentNumber, LocalDate givenYear){
-        return salaryDAO.getGenderPayGap(departmentNumber,givenYear);
+    public ResponseEntity getGenderPayGapByDepartmentNumberAndYear(@RequestParam String departmentNumber, LocalDate givenYear){
+        ResponseEntity returnValue = null;
+        String result = salaryDAO.getGenderPayGap(departmentNumber,givenYear);
+        returnValue = new ResponseEntity<>("{\"message\":\""+result+"\"}", HttpStatus.FOUND);
+        return returnValue;
     }
 
 }

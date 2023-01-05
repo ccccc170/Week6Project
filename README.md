@@ -46,3 +46,19 @@ It is harder to implement these methods than we expected.
 ### Retrospective
 
 Workflow is good, progress should continue at a steady pace.
+
+## Sprint 2
+
+After a brief discussion on how much progress was made yesterday we made a plan on what we wanted to accomplish today
+
+### Plan
+
+The plan for this sprint was:
+- Finish implementing outstanding crud methods
+- Implement our extra analytical methods
+- Add exception handling and logging
+- Start JUnit testing our methods.
+- Try to create API keys and limit access to functions based on these
+
+Patryk created a controller to handle exceptions, this allows us to handle exceptions separately from our controllers.
+In order to store data of users we wanted to create a users table in our database.
