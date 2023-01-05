@@ -37,8 +37,8 @@ public class DeptEmpMapperImplTest {
         deptEmpDTO.setId(id);
         deptEmpDTO.setToDate(LocalDate.of(2002, 01, 01));
         deptEmpDTO.setFromDate(LocalDate.of(2000, 01, 01));
-        deptEmpDTO.setEmpNo(employee);
-        deptEmpDTO.setDeptNo(department);
+        deptEmpDTO.setEmpNo(employee.getId());
+        deptEmpDTO.setDeptNo(department.getId());
 
         DeptEmp result = deptEmpMapper.dtoToDeptEmp(deptEmpDTO);
         System.out.println(result);

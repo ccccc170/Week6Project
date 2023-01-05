@@ -18,7 +18,7 @@ We need to
 
 ## User Stories
 
-## 1st Day
+## Sprint 1
 
 On the first day Craig created a new repository for this extension of week 5 and mirrored the week 5 repo into this new repo.
 ```
@@ -28,6 +28,21 @@ git push --mirror <gitlink>
 
 We started creating a product backlog and sprint backlog with tasks derived from the given requirements.
 
-We worked through one controller, EmployeeController, together so we knew what we were doing. Then once we had implemented standard CRUD methods there we split off to create the controllers for the other DAO classes we had.
-Patryk worked on DepartmentController, Hanibal worked on DepartmentManagerController, Abdullah worked on DeptEmpController, Liam worked on TitleController, Cameron worked on SalaryController and Omari did error handling on the employeeController.
+### Plan
 
+We worked through one controller, EmployeeController, together so we knew what we were doing.
+Then once we had implemented standard CRUD methods there we split off to create the controllers for the other DAO classes we had.
+
+| Patryk               | Hanibal                     | Abdullah          | Liam            | Cameron          | Omari         | Craig              |
+|----------------------|-----------------------------|-------------------|-----------------|------------------|---------------|--------------------|
+| DepartmentController | DepartmentManagerController | DeptEmpController | TitleController | SalaryController | ErrorHandling | EmployeeController |
+
+If anyone had issues with code then they would share their screen, and we would troubleshoot together.
+
+### Review
+Most of the CRUD methods were completed, implementation of advanced methods are yet to be started.
+It is harder to implement these methods than we expected.
+
+### Retrospective
+
+Workflow is good, progress should continue at a steady pace.

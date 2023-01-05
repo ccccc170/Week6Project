@@ -65,8 +65,8 @@ public class DeptManagerMapperImplTest {
         employee.setLastName("Fowler");
         employee.setHireDate(LocalDate.of(2004, 01, 01));
         employee.setBirthDate(LocalDate.of(1975, 01, 01));
-        deptManagerDTO.setDeptNo(department);
-        deptManagerDTO.setEmpNo(employee);
+        deptManagerDTO.setDeptNo(department.getId());
+        deptManagerDTO.setEmpNo(employee.getId());
         deptManagerDTO.setId(deptManagerId);
         deptManagerDTO.setFromDate(LocalDate.of(2005, 01, 01));
         deptManagerDTO.setToDate(LocalDate.of(2008, 01, 01));

@@ -49,19 +49,20 @@ public class DepartmentManagerDAO implements DepartmentManagerService<DeptManage
 
 
     @Override
-    public void update(DeptManagerDTO e, DeptManagerId id) {
-        Optional<DeptManager> departmentManagerDb = deptManagerRepository.findById(id);
-        if (departmentManagerDb.isPresent()) {
-            DeptManager updatedDepartmentManager = departmentManagerDb.get();
-            updatedDepartmentManager.setFromDate(e.getFromDate());
-            updatedDepartmentManager.setToDate(e.getToDate());
-            Department department= new Department();
-            department.setId(e.getId().getDeptNo());
-            department.setDeptName(departmentRepository.findDeptNameByDeptNo(e.getId().getDeptNo()));
-            updatedDepartmentManager.setDeptNo(department);
-            updatedDepartmentManager.setEmpNo(employeeRepository.findById(e.getEmpNo()).get());
-            deptManagerRepository.save(updatedDepartmentManager);
-        }
+    public void update(DeptManagerDTO e) {
+//        Optional<DeptManager> departmentManagerDb = deptManagerRepository.findById(id);
+//        if (departmentManagerDb.isPresent()) {
+//            DeptManager updatedDepartmentManager = departmentManagerDb.get();
+//            updatedDepartmentManager.setFromDate(e.getFromDate());
+//            updatedDepartmentManager.setToDate(e.getToDate());
+//            Department department= new Department();
+//            department.setId(e.getId().getDeptNo());
+//            department.setDeptName(departmentRepository.findDeptNameByDeptNo(e.getId().getDeptNo()));
+//            updatedDepartmentManager.setDeptNo(department);
+//            updatedDepartmentManager.setEmpNo(employeeRepository.findById(e.getEmpNo()).get());
+//            deptManagerRepository.save(updatedDepartmentManager);
+//        }
+        deptManagerRepository.save(deptManagerMapper.dtoToDeptManager(e));
     }
 
     @Override
