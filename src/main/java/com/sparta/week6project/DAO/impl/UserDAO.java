@@ -70,7 +70,7 @@ public class UserDAO implements UserService {
                     .lastUpdate(Instant.from(LocalDateTime.now()))
                     .build();
 //            check if api needs id in builder?
-            Apikey apikeySaved = apikeyRepository.save(key);
+            Apikey apikeySaved = apikeyRepository.save(apikey);
             return key;
         }
         return null;
@@ -86,17 +86,17 @@ public class UserDAO implements UserService {
                     .filter(a -> Boolean.parseBoolean(a.getApiKey()))
                     .forEach(a -> a.setIsNew(false));
             String key = UUID.randomUUID().toString() + System.currentTimeMillis();
-            Apikey apikey = Apikey.builder()
+            Apikey newApikey = Apikey.builder()
                     .apiKey(key)
                     .isNew(true)
                     .email(email)
                     .lastUpdate(Instant.from(LocalDateTime.now()))
                     .build();
 //            check if api needs id in builder?
-            Apikey apikeySaved = apikeyRepository.save(key);
+            Apikey apikeySaved = apikeyRepository.save(newApikey);
             return key;
         }
-        return null;
+        return getApiKey(email);
     }
 
 }
