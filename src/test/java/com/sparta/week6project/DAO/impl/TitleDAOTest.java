@@ -6,6 +6,7 @@ import com.sparta.week6project.entities.Title;
 import com.sparta.week6project.entities.TitleId;
 import com.sparta.week6project.mappers.TitleMapper;
 import com.sparta.week6project.mappers.impl.EmployeeMapperImpl;
+import com.sparta.week6project.repositories.EmployeeRepository;
 import com.sparta.week6project.repositories.TitleRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,8 @@ class TitleDAOTest {
     @Autowired
     private EmployeeMapperImpl employeeMapper;
 
+    @Autowired
+    EmployeeRepository employeeRepository;
     @Test
     void findByIdTest() {
         TitleId titleId = new TitleId();
@@ -61,14 +64,14 @@ class TitleDAOTest {
         titleId.setFromDate(LocalDate.of(2020,1,1));
         TitleDTO titleDTO = new TitleDTO();
         titleDTO.setId(titleId);
-        titleDTO.setEmpNo(employee1);
+        titleDTO.setEmpNo(employee1.getId());
         titleDTO.setToDate(LocalDate.of(2022,5,5));
 
         Optional<Title> title = titleRepository.findById(titleId);
         if(title.isEmpty()) {
             titleDAO.save(titleDTO);
         }
-        Assertions.assertTrue(titleDAO.findById(titleId).get().getEmpNo().getId().equals(100010));
+        Assertions.assertTrue(titleDAO.findById(titleId).get().getEmpNo().equals(100010));
     }
 
     @Test
@@ -90,10 +93,10 @@ class TitleDAOTest {
         TitleDTO titleDTO = new TitleDTO();
         titleDTO.setToDate(LocalDate.of(2022,1,1));
         titleDTO.setId(titleId);
-        titleDTO.setEmpNo(employee1);
+        titleDTO.setEmpNo(employee1.getId());
         Optional<Title> titleDB = titleRepository.findById(titleId);
         if(titleDB.isPresent()) {
-            titleDB.get().setEmpNo(titleDTO.getEmpNo());
+            titleDB.get().setEmpNo(employeeRepository.findById(titleDTO.getEmpNo()).get());
             titleDB.get().setToDate(titleDTO.getToDate());
             titleRepository.save((titleDB.get()));
         }
@@ -124,7 +127,7 @@ class TitleDAOTest {
             TitleDTO titleDTO = new TitleDTO();
             titleDTO.setToDate(LocalDate.of(2022,1,1));
             titleDTO.setId(titleId);
-            titleDTO.setEmpNo(employee1);
+            titleDTO.setEmpNo(employeeRepository.findById(employee1.getId()).get().getId());
             titleDAO.save(titleDTO);
         }
         titleDAO.deleteById(titleId);

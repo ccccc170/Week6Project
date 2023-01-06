@@ -25,7 +25,10 @@ public class DepartmentManagerController {
     private DeptManagerRepository deptManagerRepository;
 
     @GetMapping("/")
-    public DeptManagerDTO findById(@RequestBody DeptManagerId deptManagerId){
+    public DeptManagerDTO findById(@RequestParam Integer empNo, @RequestParam String deptNo){
+        DeptManagerId deptManagerId = new DeptManagerId();
+        deptManagerId.setDeptNo(deptNo);
+        deptManagerId.setEmpNo(empNo);
         DeptManagerDTO deptManagerDTO = null;
         System.out.println(deptManagerId);
         Optional<DeptManagerDTO> deptEmpDTOOptional = null;
@@ -93,7 +96,7 @@ public class DepartmentManagerController {
             }
             return "{\"message\": " + "\"" + deptManagerId + " has been deleted!}" + "\"}";
         }catch (Exception e){
-            return "{\"message\": " + "\"" + deptManagerId + " does not exist in department manager !}" + "\"";
+            return "{\"message\": " + "\"" + deptManagerId + " does not exist in department manager !" + "\"}";
         }
     }
 }
