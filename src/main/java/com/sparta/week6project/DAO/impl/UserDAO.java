@@ -98,13 +98,23 @@ public class UserDAO implements UserService {
 
     public String findRoleByKey(String key) {
         Optional<Apikey> apiKeyDb = apikeyRepository.findByApiKey(key);
-        if(apiKeyDb.isPresent()) {
+        if (apiKeyDb.isPresent()) {
             Optional<User> byEmail = userRepository.findByEmail(apiKeyDb.get().getEmail());
             if (byEmail.isPresent()) {
                 String role = byEmail.get().getRole();
                 return role;
             }
-        } return null;
+        }
+        return null;
     }
+
+    public boolean isUpdateUser(String key) {
+    return "UPDATE".equals(findRoleByKey(key));
+    }
+
+    public boolean isAdminUser(String key) {
+        return "ADMIN".equals(findRoleByKey(key));
+    }
+
 
 }
