@@ -1,4 +1,4 @@
-package controllerTests;
+package com.sparta.week6project.ControllerTests;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
