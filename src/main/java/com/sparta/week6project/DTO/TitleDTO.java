@@ -11,7 +11,7 @@ public class TitleDTO {
     private TitleId id;
 
 
-    private Employee empNo;
+    private Integer empNo;
 
 
     private LocalDate toDate;
@@ -24,11 +24,11 @@ public class TitleDTO {
         this.id = id;
     }
 
-    public Employee getEmpNo() {
+    public Integer getEmpNo() {
         return empNo;
     }
 
-    public void setEmpNo(Employee empNo) {
+    public void setEmpNo(Integer empNo) {
         this.empNo = empNo;
     }
 

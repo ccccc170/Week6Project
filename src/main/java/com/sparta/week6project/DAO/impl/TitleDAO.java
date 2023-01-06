@@ -5,6 +5,7 @@ import com.sparta.week6project.DTO.TitleDTO;
 import com.sparta.week6project.entities.Title;
 import com.sparta.week6project.entities.TitleId;
 import com.sparta.week6project.mappers.TitleMapper;
+import com.sparta.week6project.repositories.EmployeeRepository;
 import com.sparta.week6project.repositories.TitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class TitleDAO implements TitleService {
 
     @Autowired
     private TitleRepository titleRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     public TitleDAO(TitleMapper titleMapper, TitleRepository titleRepository) {
         this.titleMapper = titleMapper;
@@ -45,7 +49,7 @@ public class TitleDAO implements TitleService {
         Optional<Title> titleDb = titleRepository.findById(id);
         if(titleDb.isPresent()) {
             Title updatedTitle = titleDb.get();
-            updatedTitle.setEmpNo(e.getEmpNo());
+            updatedTitle.setEmpNo(employeeRepository.findById(e.getEmpNo()).get());
             updatedTitle.setToDate(e.getToDate());
             titleRepository.save(updatedTitle);
         }
