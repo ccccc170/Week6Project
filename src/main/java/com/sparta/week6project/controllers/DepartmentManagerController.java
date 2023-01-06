@@ -88,7 +88,10 @@ public class DepartmentManagerController {
         //return departmentManagerDAO.save(deptManagerDTO);
     }
     @DeleteMapping("/")
-    public String delete(@RequestBody DeptManagerId deptManagerId){
+    public String delete(@RequestParam Integer empNo, @RequestParam String deptNo){
+        DeptManagerId deptManagerId = new DeptManagerId();
+        deptManagerId.setDeptNo(deptNo);
+        deptManagerId.setEmpNo(empNo);
         try{
             if(departmentManagerDAO.findById(deptManagerId).isPresent()){
                 departmentManagerDAO.deleteById(deptManagerId);
