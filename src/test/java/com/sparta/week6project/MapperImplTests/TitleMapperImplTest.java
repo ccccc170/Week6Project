@@ -58,7 +58,8 @@ public class TitleMapperImplTest {
         employee.setHireDate(LocalDate.of(2012,01 ,01));
         titleDTO.setToDate(LocalDate.of(2014, 01, 01));
         titleDTO.setId(titleId);
-        titleDTO.setEmpNo(employee);
+        titleDTO.setEmpNo(113);
+        titleDTO.setEmpNo(113);
 
         Title result = titleMapper.dtoToTitle(titleDTO);
         System.out.println(result);
