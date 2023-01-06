@@ -3,18 +3,15 @@ package com.sparta.week6project.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.week6project.DAO.impl.UserDAO;
-import com.sparta.week6project.DTO.DepartmentDTO;
 import com.sparta.week6project.DTO.UserDTO;
-import com.sparta.week6project.exceptions.KeyDoesNotExistException;
 import com.sparta.week6project.repositories.ApikeyRepository;
-import com.sun.net.httpserver.Headers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.io.IOError;
 import java.util.Optional;
 
 @RestController
@@ -46,20 +43,28 @@ public class UserController {
             throw new RuntimeException(e);
         }
 
-        if(userDAO.isUpdateUser(key) || userDAO.isAdminUser(key) ) {
+        if (userDAO.isUpdateUser(key) || userDAO.isAdminUser(key)) {
             userDAO.save(userDTO);
             return response;
         } else {
             response = new ResponseEntity<>("{\"message\":\"You are not authorized\"}", headers, HttpStatus.UNAUTHORIZED);
         }
-         return  response;
+        return response;
     }
 
 
     @PutMapping("/")
-    public UserDTO update(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<String> update(@RequestBody UserDTO userDTO, String key) {
+        HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        headers.add("content-type", "application/json");
+        ResponseEntity<String> response = null;
         Optional<UserDTO> originalOptional = userDAO.findById(userDTO.getId());
-        if (originalOptional.isPresent()) {
+        try {
+            response = new ResponseEntity<>(objectMapper.writeValueAsString(userDTO), headers, HttpStatus.OK);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        if (originalOptional.isPresent() && (userDAO.isUpdateUser(key) || userDAO.isAdminUser(key))) {
             UserDTO original = originalOptional.get();
             if (userDTO.getFirstName() != null) {
                 original.setFirstName(userDTO.getFirstName());
@@ -74,14 +79,31 @@ public class UserController {
                 original.setRole(userDTO.getRole());
             }
 
-            return userDAO.save(original);
+            userDAO.save(original);
+            return response;
+        } else {
+            response = new ResponseEntity<>("{\"message\":\"You are not authorized\"}", headers, HttpStatus.UNAUTHORIZED);
         }
-        return new UserDTO();
+        return response;
     }
 
     @DeleteMapping("/")
-    public void deleteById(@RequestParam Integer id) {
-        userDAO.deleteById(id);
+    public ResponseEntity<String> deleteById(@RequestParam Integer id, @RequestParam String key) {
+        HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        headers.add("content-type", "application/json");
+        ResponseEntity<String> response = null;
+        try {
+            response = new ResponseEntity<>(headers, HttpStatus.OK);
+        } catch (IOError e) {
+            throw new RuntimeException(e);
+        }
+        if ((userDAO.isAdminUser(key))) {
+            userDAO.deleteById(id);
+            return response;
+        } else {
+            response = new ResponseEntity<>("{\"message\":\"You are not authorized\"}", headers, HttpStatus.UNAUTHORIZED);
+        }
+        return response;
     }
 
     @GetMapping("/getApiKey/{email}")
