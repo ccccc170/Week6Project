@@ -72,8 +72,6 @@ public class SalaryControllerTest {
         }
         System.out.println(result);
         Assertions.assertEquals(63193.0,result);
-
-
     }
 
     @Test
