@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -62,14 +61,15 @@ public class UserDAO implements UserService {
     public String getApiKey(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
-            String key = UUID.randomUUID().toString() + System.currentTimeMillis();
+            String key = UUID.randomUUID().toString();
             Apikey apikey = Apikey.builder()
+                    .id(0)
                     .apiKey(key)
                     .isNew(true)
                     .email(email)
-                    .lastUpdate(Instant.from(LocalDateTime.now()))
+                    .lastUpdate(Instant.now())
                     .build();
-//            check if api needs id in builder?
+
             Apikey apikeySaved = apikeyRepository.save(apikey);
             return key;
         }
@@ -79,20 +79,17 @@ public class UserDAO implements UserService {
     public String regenerateApiKey(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
-            Optional<Apikey> apiByEmail = apikeyRepository.findByEmail(email);
-            Apikey apiKey = apiByEmail.get();
             List<Apikey> allByEmail = apikeyRepository.findAllByEmail(email);
             allByEmail.stream()
-                    .filter(a -> Boolean.parseBoolean(a.getApiKey()))
                     .forEach(a -> a.setIsNew(false));
-            String key = UUID.randomUUID().toString() + System.currentTimeMillis();
+            String key = UUID.randomUUID().toString();
             Apikey newApikey = Apikey.builder()
+                    .id(0)
                     .apiKey(key)
                     .isNew(true)
                     .email(email)
-                    .lastUpdate(Instant.from(LocalDateTime.now()))
+                    .lastUpdate(Instant.now())
                     .build();
-//            check if api needs id in builder?
             Apikey apikeySaved = apikeyRepository.save(newApikey);
             return key;
         }
