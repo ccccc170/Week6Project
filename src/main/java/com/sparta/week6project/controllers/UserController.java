@@ -68,12 +68,12 @@ public class UserController {
     }
 
     @GetMapping("/getApiKey/{email}")
-    public String getApiKey(String email) {
+    public String getApiKey(@PathVariable String email) {
         return userDAO.getApiKey(email);
     }
 
     @GetMapping("/getApiKey/regenerate/{email}")
-    public String regenerateApiKey(String email) {
+    public String regenerateApiKey(@PathVariable String email) {
         return userDAO.regenerateApiKey(email);
     }
 
