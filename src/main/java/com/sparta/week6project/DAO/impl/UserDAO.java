@@ -109,11 +109,19 @@ public class UserDAO implements UserService {
     }
 
     public boolean isUpdateUser(String key) {
-    return "UPDATE".equals(findRoleByKey(key));
+        Optional<Apikey> byApiKey = apikeyRepository.findByApiKey(key);
+        if (byApiKey.get().getLastUpdate().isAfter(Instant.now().minusSeconds(24 * 60 * 60)) && "UPDATE".equals(findRoleByKey(key))) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isAdminUser(String key) {
-        return "ADMIN".equals(findRoleByKey(key));
+        Optional<Apikey> byApiKey = apikeyRepository.findByApiKey(key);
+        if (byApiKey.get().getLastUpdate().isAfter(Instant.now().minusSeconds(24 * 60 * 60)) && "ADMIN".equals(findRoleByKey(key))) {
+            return true;
+        }
+        return false;
     }
 
 
