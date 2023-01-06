@@ -18,5 +18,6 @@ public interface ApikeyRepository extends JpaRepository<Apikey, Integer> {
     @Query(value = "SELECT * FROM apikeys WHERE email = :email", nativeQuery = true)
     List<Apikey> findAllByEmail(String email);
 
+    @Query(value = "SELECT * FROM apikeys WHERE api_key = :key", nativeQuery = true)
     Optional<Apikey> findByApiKey(String key);
 }

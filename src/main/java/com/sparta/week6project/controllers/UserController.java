@@ -1,12 +1,19 @@
 package com.sparta.week6project.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.week6project.DAO.impl.UserDAO;
 import com.sparta.week6project.DTO.DepartmentDTO;
 import com.sparta.week6project.DTO.UserDTO;
 import com.sparta.week6project.exceptions.KeyDoesNotExistException;
 import com.sparta.week6project.repositories.ApikeyRepository;
+import com.sun.net.httpserver.Headers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Optional;
 
@@ -20,24 +27,34 @@ public class UserController {
     @Autowired
     private ApikeyRepository apikeyRepository;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
     @GetMapping("/{id}")
     public UserDTO findById(@PathVariable Integer id) {
         return userDAO.findById(id).get();
     }
 
     @PostMapping()
-    public UserDTO save(@RequestBody UserDTO userDTO) {
-        return userDAO.save(userDTO);
+    public ResponseEntity<String> save(@RequestBody UserDTO userDTO, @RequestParam String key) {
+        HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        headers.add("content-type", "application/json");
+        ResponseEntity<String> response = null;
+        try {
+            response = new ResponseEntity<>(objectMapper.writeValueAsString(userDTO), headers, HttpStatus.OK);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        if("ADMIN".equals(userDAO.findRoleByKey(key)) || "UPDATE".equals(userDAO.findRoleByKey(key))) {
+            userDAO.save(userDTO);
+            return response;
+        } else {
+            response = new ResponseEntity<>("{\"message\":\"You are not authorized\"}", headers, HttpStatus.UNAUTHORIZED);
+        }
+         return  response;
     }
 
-//    @PostMapping("/{key}")
-//    public UserDTO save(@RequestBody UserDTO userDTO, @PathVariable String key) throws KeyDoesNotExistException {
-//        if (apikeyRepository.findByApiKey(key).isPresent()) {
-//            return userDAO.save(userDTO);
-//        } else {
-//            throw new KeyDoesNotExistException("Key is invalid");
-//        }
-//    }
 
     @PutMapping("/")
     public UserDTO update(@RequestBody UserDTO userDTO) {
