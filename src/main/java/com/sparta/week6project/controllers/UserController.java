@@ -46,7 +46,7 @@ public class UserController {
             throw new RuntimeException(e);
         }
 
-        if("ADMIN".equals(userDAO.findRoleByKey(key)) || "UPDATE".equals(userDAO.findRoleByKey(key))) {
+        if(userDAO.isUpdateUser(key) || userDAO.isAdminUser(key) ) {
             userDAO.save(userDTO);
             return response;
         } else {
