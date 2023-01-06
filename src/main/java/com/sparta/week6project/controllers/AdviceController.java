@@ -1,6 +1,7 @@
 package com.sparta.week6project.controllers;
 
 import com.sparta.week6project.Week6ProjectApplication;
+import com.sparta.week6project.exceptions.KeyDoesNotExistException;
 import jakarta.persistence.EntityNotFoundException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -23,6 +24,13 @@ public class AdviceController {
     public String handleEntityNotFoundException(EntityNotFoundException e) {
         log.error( "Entity not found!");
         return "<h1>Entity not found!</h1>";
+    }
+
+    @ExceptionHandler(KeyDoesNotExistException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleMethodKeyDoesNotExistException(KeyDoesNotExistException e){
+        log.error( e.getMessage());
+        return "<h1>You provided an invalid key</h1>";
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
